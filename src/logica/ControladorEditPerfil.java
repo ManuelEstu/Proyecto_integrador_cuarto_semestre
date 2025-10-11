@@ -30,6 +30,13 @@ public class ControladorEditPerfil {
         return usuDAO.buscarPerfil(documento, tipoUsuario);
     }
     
+    // Método para llamar al DAO y realizar la actualización
+    public boolean actualizarDatos(DatosUsuario datos) {
+        // El método actualizarUsuario ya maneja la lógica para omitir la tarjeta 
+        // profesional y el documento (solo usa el documento para el WHERE).
+        return usuDAO.actualizarUsuario(datos);
+    }
+    
     //métodos de validación nuevos datos
     public String validarNumeros(String telefono) {
         
@@ -95,4 +102,12 @@ public class ControladorEditPerfil {
         return null;
     }
     
+    // En logica.ControladorEditPerfil
+    public String validarCorreo(String correo) {
+        String patronCorreo = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
+        if (correo.isEmpty() || !correo.matches(patronCorreo)) {
+            return "El Correo electrónico no tiene un formato válido.";
+        }
+        return null;
+    }
 }

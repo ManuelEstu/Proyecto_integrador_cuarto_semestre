@@ -13,12 +13,16 @@ import igu.MenuFuncionario;
 import logica.ControladorUser1;
 import logica.ControladorTecnico;
 public class Registrar_nuevo_usuario extends javax.swing.JFrame {
-
+    private String documento;
     /**
      * Creates new form Registrar_nuevo_usuario
      */
-    public Registrar_nuevo_usuario() {
+    public Registrar_nuevo_usuario(){
         initComponents();
+    }
+    public Registrar_nuevo_usuario(String documento) {
+        initComponents();
+        this.documento = documento;
         Txt_tar_pro.setEditable(false);
         Txt_tar_pro.setEnabled(false);
     }
@@ -222,7 +226,7 @@ public class Registrar_nuevo_usuario extends javax.swing.JFrame {
         // Cierra esta ventana
         this.dispose();
         // Abre la otra ventana
-        MenuFuncionario menuF = new MenuFuncionario();
+        MenuFuncionario menuF = new MenuFuncionario(this.documento);
         menuF.setVisible(true);
         menuF.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_cancelarActionPerformed

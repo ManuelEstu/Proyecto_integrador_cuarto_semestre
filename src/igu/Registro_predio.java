@@ -201,7 +201,7 @@ public class Registro_predio extends javax.swing.JFrame {
     public Registro_predio() {
         initComponents();
     }
-    
+    private String documentoDueno;
     public Registro_predio(String documentoDueno) {
         initComponents();
         inicializarDepartamentos();
@@ -209,7 +209,7 @@ public class Registro_predio extends javax.swing.JFrame {
         Municipio.setModel(new DefaultComboBoxModel<>(new String[]{"-- Seleccione Departamento Primero --"}));
         // 1. Establecer el valor por defecto
         Txt_documento_dueno.setText(documentoDueno); 
-        
+        this.documentoDueno = documentoDueno;
         // 2. Deshabilitar la edición del campo
         // Esto evita que el productor cambie su propio documento al registrar un lugar
         Txt_documento_dueno.setEditable(false); 
@@ -452,7 +452,7 @@ public class Registro_predio extends javax.swing.JFrame {
         // Cierra esta ventana
         this.dispose();
         // Abre la otra ventana
-        MenuPropietario menuPP = new MenuPropietario();
+        MenuPropietario menuPP = new MenuPropietario(this.documentoDueno);
         menuPP.setVisible(true);
         menuPP.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_cancelarActionPerformed

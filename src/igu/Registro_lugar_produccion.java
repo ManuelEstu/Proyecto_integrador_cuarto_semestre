@@ -205,7 +205,7 @@ public class Registro_lugar_produccion extends javax.swing.JFrame {
         // Txt_documento_dueno.setText(""); 
         // Txt_documento_dueno.setEnabled(false);
     }
-    
+    private String documentoDueno;
     public Registro_lugar_produccion(String documentoDueno) {
         initComponents();
         inicializarDepartamentos();
@@ -213,7 +213,7 @@ public class Registro_lugar_produccion extends javax.swing.JFrame {
         Municipio.setModel(new DefaultComboBoxModel<>(new String[]{"-- Seleccione Departamento Primero --"}));
         // 1. Establecer el valor por defecto
         Txt_documento_dueno.setText(documentoDueno); 
-        
+        this.documentoDueno = documentoDueno;
         // 2. Deshabilitar la edición del campo
         // Esto evita que el productor cambie su propio documento al registrar un lugar
         //Txt_documento_dueno.setEnabled(false); 
@@ -462,7 +462,7 @@ public class Registro_lugar_produccion extends javax.swing.JFrame {
         // Cierra esta ventana
         this.dispose();
         // Abre la otra ventana
-        MenuProductor menuP = new MenuProductor();
+        MenuProductor menuP = new MenuProductor(this.documentoDueno);
         menuP.setVisible(true);
         menuP.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_cancelarActionPerformed

@@ -12,44 +12,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import logica.DatosUsuario;
 
 /**
  * Clase para el acceso a datos de usuarios (Funcionarios y Técnicos).
  */
 public class UsuarioDao {
     
-    public static class DatosUsuario {
-        // Campos de identificación
-        public String documento; // Usado solo en la cláusula WHERE (NO se actualiza)
-        public String tipoUsuario; // Tipo de usuario (para determinar la tabla)
-
-        // Campos que SÍ se pueden editar
-        public String nombreUsuario;
-        public String clave; // ⚠️ ¡Manejar la clave de forma segura en la aplicación!
-        public String nombre;
-        public String apellido;
-        public String telefono;
-        public String correo;
-
-        // La Tarjeta Profesional se incluye solo en la consulta 'buscarPerfil', pero NO en el 'update'.
-        // Se mantiene aquí para consistencia si se usa este DTO para pasar datos completos, 
-        // pero NO será mapeado a la sentencia UPDATE.
-        public String tarjetaProfesional; 
-
-        // Constructor
-        public DatosUsuario(String documento, String tipoUsuario, String nombreUsuario, String clave, String nombre, 
-                            String apellido, String telefono, String correo, String tarjetaProfesional) {
-            this.documento = documento;
-            this.tipoUsuario = tipoUsuario;
-            this.nombreUsuario = nombreUsuario;
-            this.clave = clave;
-            this.nombre = nombre;
-            this.apellido = apellido;
-            this.telefono = telefono;
-            this.correo = correo;
-            this.tarjetaProfesional = tarjetaProfesional;
-        }
-    }
 
     /**
      * Busca la información de un usuario por su documento y tipo.

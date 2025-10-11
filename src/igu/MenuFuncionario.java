@@ -230,7 +230,7 @@ public class MenuFuncionario extends javax.swing.JFrame {
 
     private void Btn_Registro_usuario_nActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Registro_usuario_nActionPerformed
         this.dispose();
-        Registrar_nuevo_usuario pRegistro = new Registrar_nuevo_usuario();
+        Registrar_nuevo_usuario pRegistro = new Registrar_nuevo_usuario(documentoFuncionario);
         pRegistro.setVisible(true);
         pRegistro.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_Registro_usuario_nActionPerformed

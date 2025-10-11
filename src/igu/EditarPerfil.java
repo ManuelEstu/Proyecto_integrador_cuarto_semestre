@@ -10,11 +10,12 @@ package igu;
  */
 import logica.ControladorEditPerfil;
 import javax.swing.JOptionPane;
+import logica.DatosUsuario;
 
 public class EditarPerfil extends javax.swing.JFrame {
     private ControladorEditPerfil control; // Declarar el controlador
     private String tipoUsuario; // Guardar el tipo de usuario para la actualización posterior
-    
+    private String documento;
     public EditarPerfil() {
         // Llama al constructor que recibe datos con valores de inicialización 
         // o valores que sabes que no encontrarán nada (por ejemplo, "0" y "NULO").
@@ -25,6 +26,7 @@ public class EditarPerfil extends javax.swing.JFrame {
     public EditarPerfil(String documento, String tipoUsuario) {
         this.control = new ControladorEditPerfil();
         this.tipoUsuario = tipoUsuario;
+        this.documento = documento;
         
         initComponents();
         Txt_documento.setEditable(false);
@@ -250,19 +252,19 @@ public class EditarPerfil extends javax.swing.JFrame {
         this.dispose();
 
         if (tipoUsuario.equalsIgnoreCase("Funcionario ICA")) {
-            MenuFuncionario menuF = new MenuFuncionario();
+            MenuFuncionario menuF = new MenuFuncionario(this.documento);
             menuF.setVisible(true);
             menuF.setLocationRelativeTo(null);
         } else if (tipoUsuario.equalsIgnoreCase("Productor")) {
-            MenuProductor menuProduc = new MenuProductor();
+            MenuProductor menuProduc = new MenuProductor(this.documento);
             menuProduc.setVisible(true);
             menuProduc.setLocationRelativeTo(null);
         } else if (tipoUsuario.equalsIgnoreCase("Propietario")) {
-            MenuPropietario menuPropie = new MenuPropietario();
+            MenuPropietario menuPropie = new MenuPropietario(this.documento);
             menuPropie.setVisible(true);
             menuPropie.setLocationRelativeTo(null);
         } else if (tipoUsuario.equalsIgnoreCase("Técnico")) {
-            MenuTecnico menuT = new MenuTecnico();
+            MenuTecnico menuT = new MenuTecnico(this.documento);
             menuT.setVisible(true);
             menuT.setLocationRelativeTo(null);
         } 
@@ -270,7 +272,79 @@ public class EditarPerfil extends javax.swing.JFrame {
     }//GEN-LAST:event_Btn_cancelarActionPerformed
 
     private void Btn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_actualizarActionPerformed
-        // TODO add your handling code here:
+        // 1. Recoger los datos de la interfaz
+        // Nota: El documento y el tipo de usuario (this.documento, this.tipoUsuario) 
+        // YA deberían estar inicializados como variables de clase al abrir la ventana.
+
+        String doc = Txt_documento.getText().trim();
+        String nomUser = Txt_nom_user.getText().trim();
+        String clave = Txt_clave.getText().trim();
+        String nombre = Txt_nombre.getText().trim();
+        String apellido = Txt_apellido.getText().trim();
+        String telefono = Txt_telefono.getText().trim();
+        String correo = Txt_correo.getText().trim();
+        String tarPro = Txt_tar_pro.getText().trim(); // Vacío si no es Técnico
+
+        // 2. Realizar las validaciones
+        String error = null;
+
+        if (error == null) error = control.validarNombreUsuario(nomUser);
+        if (error == null) error = control.validarClave(clave);
+        if (error == null) error = control.validarNombreYApellido(nombre, apellido);
+        if (error == null) error = control.validarNumeros(telefono);
+        if (error == null) error = control.validarCorreo(correo); // Asumiendo que agregaste este método
+
+        if (error != null) {
+            // Muestra el primer error encontrado
+            JOptionPane.showMessageDialog(this, error, "Error de Validación", JOptionPane.WARNING_MESSAGE);
+            return; 
+        }
+
+        // 3. Crear el objeto de datos para enviar
+        // ¡Asegúrate de que el orden de los parámetros coincida con el constructor de DatosUsuario!
+        DatosUsuario datosActualizados = new DatosUsuario(
+            doc,                       // 1. documento (desde el campo de texto, aunque se podría usar this.documento)
+            this.tipoUsuario,         // 2. tipoUsuario (¡ESTA ES LA CLAVE! Debe ser "Funcionario ICA", etc.)
+            nomUser,                   // 3. nombreUsuario
+            clave,                     // 4. clave
+            nombre,                    // 5. nombre
+            apellido,                  // 6. apellido
+            telefono,                  // 7. telefono
+            correo,                    // 8. correo
+            tarPro                     // 9. tarjetaProfesional
+        );
+
+        // 4. Intentar la actualización
+        boolean exito = control.actualizarDatos(datosActualizados);
+
+        if (exito) {
+            JOptionPane.showMessageDialog(this, "✅ Perfil actualizado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+            // 5. Regresar al menú correspondiente (Mantener el flujo de navegación)
+            this.dispose();
+
+            if (tipoUsuario.equalsIgnoreCase("Funcionario ICA")) {
+                MenuFuncionario menuF = new MenuFuncionario(this.documento);
+                menuF.setVisible(true);
+                menuF.setLocationRelativeTo(null);
+            } else if (tipoUsuario.equalsIgnoreCase("Productor")) {
+                // **IMPORTANTE:** Si MenuProductor usa el documento, debe pasarlo aquí
+                MenuProductor menuProduc = new MenuProductor(this.documento); 
+                menuProduc.setVisible(true);
+                menuProduc.setLocationRelativeTo(null);
+            } else if (tipoUsuario.equalsIgnoreCase("Propietario")) {
+                MenuPropietario menuPropie = new MenuPropietario(this.documento);
+                menuPropie.setVisible(true);
+                menuPropie.setLocationRelativeTo(null);
+            }else if (tipoUsuario.equalsIgnoreCase("Técnico")) {
+                MenuTecnico menuT = new MenuTecnico(this.documento);
+                menuT.setVisible(true);
+                menuT.setLocationRelativeTo(null);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "❌ Error al actualizar el perfil. Revise la conexión y los datos.", "Error de Actualización", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_Btn_actualizarActionPerformed
 
     /**
