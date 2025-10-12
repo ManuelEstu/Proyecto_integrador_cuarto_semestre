@@ -11,12 +11,17 @@ package igu;
 import javax.swing.JOptionPane;
 import logica.ControladorEliminarUser;
 public class EliminarUser extends javax.swing.JFrame {
-
+    private String documento;
     /**
      * Creates new form EliminarUser
      */
     public EliminarUser() {
         initComponents();
+    }
+    
+    public EliminarUser(String documento) {
+        initComponents();
+        this.documento = documento;
     }
 
     /**
@@ -132,7 +137,7 @@ public class EliminarUser extends javax.swing.JFrame {
         // Cierra esta ventana
         this.dispose();
         // Abre la otra ventana
-        MenuFuncionario menuF = new MenuFuncionario();
+        MenuFuncionario menuF = new MenuFuncionario(this.documento);
         menuF.setVisible(true);
         menuF.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_cancelarActionPerformed

@@ -268,7 +268,7 @@ public class MenuFuncionario extends javax.swing.JFrame {
        // Cierra esta ventana
         this.dispose();
         // Abre la otra ventana
-        EliminarUser eliminar = new EliminarUser();
+        EliminarUser eliminar = new EliminarUser(documentoFuncionario);
         eliminar.setVisible(true);
         eliminar.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_eliminar_userActionPerformed
