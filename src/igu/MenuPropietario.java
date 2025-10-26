@@ -38,7 +38,7 @@ public class MenuPropietario extends javax.swing.JFrame {
         Btn_cerrar = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         Btn_edit_perfil = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        Btn_edit_predio = new javax.swing.JButton();
         Btn_eliminar_predio = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -82,9 +82,14 @@ public class MenuPropietario extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(51, 153, 0));
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Editar predios");
+        Btn_edit_predio.setBackground(new java.awt.Color(51, 153, 0));
+        Btn_edit_predio.setForeground(new java.awt.Color(255, 255, 255));
+        Btn_edit_predio.setText("Editar predios");
+        Btn_edit_predio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_edit_predioActionPerformed(evt);
+            }
+        });
 
         Btn_eliminar_predio.setBackground(new java.awt.Color(51, 153, 0));
         Btn_eliminar_predio.setForeground(new java.awt.Color(255, 255, 255));
@@ -106,7 +111,7 @@ public class MenuPropietario extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Btn_Registro_predio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(Btn_edit_predio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(37, 37, 37)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -135,7 +140,7 @@ public class MenuPropietario extends javax.swing.JFrame {
                     .addComponent(Btn_edit_perfil))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
+                    .addComponent(Btn_edit_predio)
                     .addComponent(Btn_eliminar_predio))
                 .addGap(18, 18, 18)
                 .addComponent(Btn_cerrar)
@@ -187,6 +192,13 @@ public class MenuPropietario extends javax.swing.JFrame {
         pEditPer.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_edit_perfilActionPerformed
 
+    private void Btn_edit_predioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_edit_predioActionPerformed
+        this.dispose();
+        Editar_predio EditPredio = new Editar_predio(documentoPropietario);
+        EditPredio.setVisible(true);
+        EditPredio.setLocationRelativeTo(null);
+    }//GEN-LAST:event_Btn_edit_predioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -226,9 +238,9 @@ public class MenuPropietario extends javax.swing.JFrame {
     private javax.swing.JButton Btn_Registro_predio;
     private javax.swing.JButton Btn_cerrar;
     private javax.swing.JButton Btn_edit_perfil;
+    private javax.swing.JButton Btn_edit_predio;
     private javax.swing.JButton Btn_eliminar_predio;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

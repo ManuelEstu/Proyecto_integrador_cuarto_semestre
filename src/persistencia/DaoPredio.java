@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import persistencia.ConexionOracle;
+import logica.DatosPredio;
 
 public class DaoPredio {
     
@@ -161,4 +162,92 @@ public class DaoPredio {
         return resultado;
     }
     
+    public Object[] buscarLugar(String documento, String numica) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        // 🚨 Define la tabla y la columna de Tarjeta Profesional según el tipo
+        String tabla = "Predio";
+
+        // Consulta SQL genérica que se adapta al tipo de usuario
+        String sql = "SELECT Numero_registro_ICA, Numero_predial, Nombre, Departamento, Municipio, Vereda, Numero_ica_lugar_produccion, Extension, Documento_propietario" + 
+                     " FROM " + tabla + " WHERE Numero_registro_ICA = ? AND Documento_propietario = ?";
+
+        try {
+            conn = ConexionOracle.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, numica);
+            ps.setString(2, documento);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                // Si se encuentra el registro, extrae los datos
+                Object[] datos = new Object[9];
+                datos[0] = rs.getString("Numero_registro_ICA");
+                datos[1] = rs.getString("Numero_predial");
+                datos[2] = rs.getString("Nombre"); // ⚠️ ¡Recuerda manejar la clave de forma segura!
+                datos[3] = rs.getString("Departamento");
+                datos[4] = rs.getString("Municipio");
+                datos[5] = rs.getString("Vereda");
+                datos[6] = rs.getString("Numero_ica_lugar_produccion");
+                datos[7] = rs.getString("Extension");
+                datos[8] = rs.getString("Documento_propietario");
+                
+                return datos;
+            }
+        } catch (SQLException e) {
+            System.out.println("💥 Error al buscar perfil en la BD: " + e.getMessage());
+        } finally {
+            // Cerrar recursos en orden inverso (ResultSet, PreparedStatement, Connection)
+            try { if (rs != null) rs.close(); } catch (SQLException e) { /* Ignorar */ }
+            try { if (ps != null) ps.close(); } catch (SQLException e) { /* Ignorar */ }
+            ConexionOracle.cerrarConexion(conn);
+        }
+        
+        return null; // Retorna null si no se encuentra o hay un error
+    }
+    
+    public boolean actualizarLugar(DatosPredio datos) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        String tabla = "Predio";
+
+        // 2. Construir la consulta SQL con SÓLO los campos editables
+        String sql = "UPDATE " + tabla + " SET " +
+                     "NOMBRE = ?, " +
+                     "Numero_ica_lugar_produccion = ?, " +
+                     "Extension = ? " +
+                     "WHERE Numero_registro_ICA = ?"; // El documento solo se usa para la condición
+
+        try {
+            // ⚠️ Asumo que tienes una clase llamada 'ConexionOracle' con el método 'getConnection()'
+            conn = ConexionOracle.getConnection();
+            ps = conn.prepareStatement(sql);
+            
+            int index = 1;
+            // 3. Asignar los valores a los campos editables
+            ps.setString(index++, datos.nombre);
+            ps.setString(index++, datos.numero_ica_lugar_produccion);
+            ps.setString(index++, datos.extension);
+
+            // 4. Asignar el DOCUMENTO (cláusula WHERE)
+            ps.setString(index, datos.numero_registro_ICA); 
+
+            // 5. Ejecutar la actualización
+            int filasAfectadas = ps.executeUpdate();
+            
+            // 6. Verificar el resultado
+            return filasAfectadas == 1;
+
+        } catch (SQLException e) {
+            System.out.println("💥 Error al actualizar lugar de produccion en la BD: " + e.getMessage());
+            return false;
+        } finally {
+            // Cerrar recursos
+            try { if (ps != null) ps.close(); } catch (SQLException e) { /* Ignorar */ }
+            // ⚠️ Asumo que tienes un método estático llamado 'cerrarConexion(Connection conn)'
+            ConexionOracle.cerrarConexion(conn);
+        }
+    }
 }

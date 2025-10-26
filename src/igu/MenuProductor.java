@@ -42,6 +42,7 @@ public class MenuProductor extends javax.swing.JFrame {
         Btn_solicitar_visita = new javax.swing.JButton();
         Btn_admin_lotes = new javax.swing.JButton();
         Btn_eliminar_lugar = new javax.swing.JButton();
+        Btn_edit_lug = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,6 +116,15 @@ public class MenuProductor extends javax.swing.JFrame {
             }
         });
 
+        Btn_edit_lug.setBackground(new java.awt.Color(51, 153, 0));
+        Btn_edit_lug.setForeground(new java.awt.Color(255, 255, 255));
+        Btn_edit_lug.setText("Editar lugar de producción");
+        Btn_edit_lug.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_edit_lugActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -139,13 +149,15 @@ public class MenuProductor extends javax.swing.JFrame {
                             .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Btn_edit_perfil, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addComponent(Btn_cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(Btn_solicitar_visita, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Btn_edit_lug, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(94, 94, 94)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(Btn_solicitar_visita, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Btn_cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(27, 27, 27))
         );
         jPanel1Layout.setVerticalGroup(
@@ -167,11 +179,13 @@ public class MenuProductor extends javax.swing.JFrame {
                     .addComponent(Btn_eliminar_lugar))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Btn_solicitar_visita)
-                    .addComponent(jButton3))
+                    .addComponent(jButton3)
+                    .addComponent(Btn_edit_lug))
+                .addGap(18, 18, 18)
+                .addComponent(Btn_solicitar_visita)
                 .addGap(18, 18, 18)
                 .addComponent(Btn_cerrar)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -235,6 +249,13 @@ public class MenuProductor extends javax.swing.JFrame {
         pEditPer.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_edit_perfilActionPerformed
 
+    private void Btn_edit_lugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_edit_lugActionPerformed
+        this.dispose();
+        Editar_lugarP pEditLug = new Editar_lugarP(documentoProductor);
+        pEditLug.setVisible(true);
+        pEditLug.setLocationRelativeTo(null);
+    }//GEN-LAST:event_Btn_edit_lugActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -273,6 +294,7 @@ public class MenuProductor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_admin_lotes;
     private javax.swing.JButton Btn_cerrar;
+    private javax.swing.JButton Btn_edit_lug;
     private javax.swing.JButton Btn_edit_perfil;
     private javax.swing.JButton Btn_eliminar_lugar;
     private javax.swing.JButton Btn_registro_lugar;
