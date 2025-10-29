@@ -34,7 +34,7 @@ public class MenuFuncionario extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         Btn_Registro_usuario_n = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Btn_ver_users = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         Btn_edit_perfil = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -65,9 +65,14 @@ public class MenuFuncionario extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(51, 153, 0));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Ver usuarios registrados");
+        Btn_ver_users.setBackground(new java.awt.Color(51, 153, 0));
+        Btn_ver_users.setForeground(new java.awt.Color(255, 255, 255));
+        Btn_ver_users.setText("Ver usuarios registrados");
+        Btn_ver_users.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_ver_usersActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(51, 153, 0));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
@@ -161,7 +166,7 @@ public class MenuFuncionario extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(Btn_G_plagas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                                .addComponent(Btn_ver_users, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
                                 .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(Btn_edit_perfil, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(Btn_Registro_usuario_n, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -189,7 +194,7 @@ public class MenuFuncionario extends javax.swing.JFrame {
                     .addComponent(jButton8))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
+                    .addComponent(Btn_ver_users)
                     .addComponent(jButton9))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -281,6 +286,15 @@ public class MenuFuncionario extends javax.swing.JFrame {
         pEditPer.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_edit_perfilActionPerformed
 
+    private void Btn_ver_usersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ver_usersActionPerformed
+        // Cierra esta ventana
+        this.dispose();
+        // Abre la otra ventana
+        Ver_usuarios verU = new Ver_usuarios(documentoFuncionario);
+        verU.setVisible(true);
+        verU.setLocationRelativeTo(null);
+    }//GEN-LAST:event_Btn_ver_usersActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -324,9 +338,9 @@ public class MenuFuncionario extends javax.swing.JFrame {
     private javax.swing.JButton Btn_edit_perfil;
     private javax.swing.JButton Btn_eliminar_user;
     private javax.swing.JButton Btn_ordenar_inspeccion;
+    private javax.swing.JButton Btn_ver_users;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton8;

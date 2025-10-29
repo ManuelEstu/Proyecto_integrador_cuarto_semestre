@@ -8,15 +8,61 @@ package igu;
  *
  * @author CASA
  */
-public class Ver_usuarios extends javax.swing.JFrame {
+import logica.ControladorVerUsers; // Asegúrate de importar tu controlador
+import logica.DatosUsuario2;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
+public class Ver_usuarios extends javax.swing.JFrame {
+    private String documento;
+    private final ControladorVerUsers controlador;
     /**
      * Creates new form Ver_usuarios
      */
     public Ver_usuarios() {
         initComponents();
+        this.controlador = new ControladorVerUsers(); // Inicialización
+        iniciarTabla(); // Llama a un nuevo método para la configuración inicial
     }
-
+    
+    public Ver_usuarios(String documento) {
+        initComponents();
+        this.documento = documento;
+        this.controlador = new ControladorVerUsers(); // Inicialización
+        iniciarTabla(); // Llama a un nuevo método para la configuración inicial
+    }
+    
+    private void iniciarTabla() {
+        // Por defecto, carga todos los Funcionarios ICA al iniciar
+        cargarUsuarios((String) Seleccion_user.getSelectedItem(), null);
+    }
+    
+    private void cargarUsuarios(String tipo, String doc) {
+        List<DatosUsuario2> lista = controlador.buscarUsuarios(tipo, doc);
+        
+        if (lista.isEmpty() && doc != null && !doc.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No se encontró ningún usuario de tipo " + tipo + " con el documento " + doc, "Sin resultados", JOptionPane.INFORMATION_MESSAGE);
+        } else if (lista.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No hay usuarios registrados de tipo " + tipo, "Sin resultados", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+        // Cargar el modelo de tabla con los datos
+        DefaultTableModel modelo = controlador.cargarTablaUsuarios(lista);
+        Tab_users.setModel(modelo);
+        
+        // Ajustar el ancho de las columnas AHORA CON LAS 7 COLUMNAS NUEVAS
+        if (Tab_users.getColumnCount() > 0) {
+            Tab_users.getColumnModel().getColumn(0).setPreferredWidth(150); // Documento
+            Tab_users.getColumnModel().getColumn(1).setPreferredWidth(100);  // Nombre
+            Tab_users.getColumnModel().getColumn(2).setPreferredWidth(100);  // Apellido
+            Tab_users.getColumnModel().getColumn(3).setPreferredWidth(100); // Nombre de Usuario (Nuevo)
+            Tab_users.getColumnModel().getColumn(4).setPreferredWidth(100);  // Clave (Nueva)
+            Tab_users.getColumnModel().getColumn(5).setPreferredWidth(150); // Email
+            Tab_users.getColumnModel().getColumn(6).setPreferredWidth(150); // Info Adicional
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,7 +76,7 @@ public class Ver_usuarios extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         Seleccion_user = new javax.swing.JComboBox<>();
-        jButton2 = new javax.swing.JButton();
+        Btn_buscar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         Txt_documento = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -52,9 +98,14 @@ public class Ver_usuarios extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(51, 153, 0));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Buscar");
+        Btn_buscar.setBackground(new java.awt.Color(51, 153, 0));
+        Btn_buscar.setForeground(new java.awt.Color(255, 255, 255));
+        Btn_buscar.setText("Buscar");
+        Btn_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_buscarActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Filtro por documento:");
 
@@ -84,31 +135,30 @@ public class Ver_usuarios extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 35, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(113, 113, 113)
+                        .addGap(104, 104, 104)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(44, 44, 44)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(Seleccion_user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Txt_documento, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(174, 174, 174)
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Seleccion_user, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Txt_documento)))
+                        .addGap(207, 207, 207)
+                        .addComponent(Btn_buscar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(161, 161, 161)
-                        .addComponent(jButton2))
+                        .addGap(49, 49, 49)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(161, 161, 161)
+                        .addGap(217, 217, 217)
                         .addComponent(Btn_cancelar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,7 +174,7 @@ public class Ver_usuarios extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(Txt_documento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(Btn_buscar)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -149,17 +199,34 @@ public class Ver_usuarios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Seleccion_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seleccion_userActionPerformed
-        String tipo = (String) Seleccion_user.getSelectedItem();
+        
     }//GEN-LAST:event_Seleccion_userActionPerformed
 
     private void Btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_cancelarActionPerformed
         // Cierra esta ventana
         this.dispose();
         // Abre la otra ventana
-        MenuProductor menuP = new MenuProductor();
-        menuP.setVisible(true);
-        menuP.setLocationRelativeTo(null);
+        MenuFuncionario menuF = new MenuFuncionario(this.documento);
+        menuF.setVisible(true);
+        menuF.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_cancelarActionPerformed
+
+    private void Btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_buscarActionPerformed
+        // 1. Obtener el tipo de usuario seleccionado
+        String tipoSeleccionado = (String) Seleccion_user.getSelectedItem();
+        
+        // 2. Obtener el documento a buscar
+        String documentoBuscado = Txt_documento.getText().trim();
+        
+        // 3. Determinar el argumento a pasar al método de carga
+        String documentoFinal = null;
+        if (!documentoBuscado.isEmpty()) {
+            documentoFinal = documentoBuscado;
+        }
+        
+        // 4. Llamar al método para cargar/actualizar la tabla
+        cargarUsuarios(tipoSeleccionado, documentoFinal);
+    }//GEN-LAST:event_Btn_buscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,11 +264,11 @@ public class Ver_usuarios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Btn_buscar;
     private javax.swing.JButton Btn_cancelar;
     private javax.swing.JComboBox<String> Seleccion_user;
     private javax.swing.JTable Tab_users;
     private javax.swing.JTextField Txt_documento;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

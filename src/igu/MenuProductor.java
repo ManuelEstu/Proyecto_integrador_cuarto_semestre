@@ -34,7 +34,7 @@ public class MenuProductor extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         Btn_registro_lugar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Btn_ver_lugares = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         Btn_edit_perfil = new javax.swing.JButton();
@@ -59,9 +59,14 @@ public class MenuProductor extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(51, 153, 0));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Ver lugares de producción");
+        Btn_ver_lugares.setBackground(new java.awt.Color(51, 153, 0));
+        Btn_ver_lugares.setForeground(new java.awt.Color(255, 255, 255));
+        Btn_ver_lugares.setText("Ver lugares de producción");
+        Btn_ver_lugares.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_ver_lugaresActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(51, 153, 0));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
@@ -143,7 +148,7 @@ public class MenuProductor extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(Btn_registro_lugar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(Btn_ver_lugares, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -171,7 +176,7 @@ public class MenuProductor extends javax.swing.JFrame {
                     .addComponent(jButton4))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
+                    .addComponent(Btn_ver_lugares)
                     .addComponent(Btn_edit_perfil))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -256,6 +261,13 @@ public class MenuProductor extends javax.swing.JFrame {
         pEditLug.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_edit_lugActionPerformed
 
+    private void Btn_ver_lugaresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ver_lugaresActionPerformed
+        this.dispose();
+        Ver_lugares VerLug = new Ver_lugares(documentoProductor);
+        VerLug.setVisible(true);
+        VerLug.setLocationRelativeTo(null);
+    }//GEN-LAST:event_Btn_ver_lugaresActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -299,7 +311,7 @@ public class MenuProductor extends javax.swing.JFrame {
     private javax.swing.JButton Btn_eliminar_lugar;
     private javax.swing.JButton Btn_registro_lugar;
     private javax.swing.JButton Btn_solicitar_visita;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton Btn_ver_lugares;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;

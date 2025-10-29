@@ -34,7 +34,7 @@ public class MenuPropietario extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         Btn_Registro_predio = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Btn_ver_predios = new javax.swing.JButton();
         Btn_cerrar = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         Btn_edit_perfil = new javax.swing.JButton();
@@ -56,9 +56,14 @@ public class MenuPropietario extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(51, 153, 0));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Ver predios");
+        Btn_ver_predios.setBackground(new java.awt.Color(51, 153, 0));
+        Btn_ver_predios.setForeground(new java.awt.Color(255, 255, 255));
+        Btn_ver_predios.setText("Ver predios");
+        Btn_ver_predios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_ver_prediosActionPerformed(evt);
+            }
+        });
 
         Btn_cerrar.setBackground(new java.awt.Color(51, 153, 0));
         Btn_cerrar.setForeground(new java.awt.Color(255, 255, 255));
@@ -109,7 +114,7 @@ public class MenuPropietario extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Btn_ver_predios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Btn_Registro_predio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Btn_edit_predio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(37, 37, 37)
@@ -136,7 +141,7 @@ public class MenuPropietario extends javax.swing.JFrame {
                     .addComponent(jButton5))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
+                    .addComponent(Btn_ver_predios)
                     .addComponent(Btn_edit_perfil))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -199,6 +204,13 @@ public class MenuPropietario extends javax.swing.JFrame {
         EditPredio.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_edit_predioActionPerformed
 
+    private void Btn_ver_prediosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ver_prediosActionPerformed
+        this.dispose();
+        Ver_predios VerPredios = new Ver_predios(documentoPropietario);
+        VerPredios.setVisible(true);
+        VerPredios.setLocationRelativeTo(null);
+    }//GEN-LAST:event_Btn_ver_prediosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -240,7 +252,7 @@ public class MenuPropietario extends javax.swing.JFrame {
     private javax.swing.JButton Btn_edit_perfil;
     private javax.swing.JButton Btn_edit_predio;
     private javax.swing.JButton Btn_eliminar_predio;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton Btn_ver_predios;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
