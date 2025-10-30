@@ -234,7 +234,7 @@ public class MenuProductor extends javax.swing.JFrame {
 
     private void Btn_admin_lotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_admin_lotesActionPerformed
         this.dispose();
-        Administrar_lotes pAdminLotes = new Administrar_lotes();
+        Administrar_lotes pAdminLotes = new Administrar_lotes(documentoProductor);
         pAdminLotes.setVisible(true);
         pAdminLotes.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_admin_lotesActionPerformed

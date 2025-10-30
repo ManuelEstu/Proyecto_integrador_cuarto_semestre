@@ -9,11 +9,16 @@ package igu;
  * @author CASA
  */
 public class Administrar_lotes extends javax.swing.JFrame {
-
+    private String documento;
     /**
      * Creates new form Administrar_lotes
      */
     public Administrar_lotes() {
+        initComponents();
+    }
+    
+    public Administrar_lotes(String documento) {
+        this.documento = documento;
         initComponents();
     }
 
@@ -138,7 +143,7 @@ public class Administrar_lotes extends javax.swing.JFrame {
         // Cierra esta ventana
         this.dispose();
         // Abre la otra ventana
-        MenuProductor menuP = new MenuProductor();
+        MenuProductor menuP = new MenuProductor(this.documento);
         menuP.setVisible(true);
         menuP.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_cancelarActionPerformed
@@ -147,7 +152,7 @@ public class Administrar_lotes extends javax.swing.JFrame {
         // Cierra esta ventana
         this.dispose();
         // Abre la otra ventana
-        Crear_lote pCreoL = new Crear_lote();
+        Crear_lote pCreoL = new Crear_lote(this.documento);
         pCreoL.setVisible(true);
         pCreoL.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_crear_loteActionPerformed
