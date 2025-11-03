@@ -128,4 +128,44 @@ public class DaoLote {
         return exito;
     }
     
+    public boolean eliminarLote(String idLoteTexto) { // <--- Recibe String
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        boolean exito = false;
+
+        // Sentencia SQL para actualizar el estado del lote. 
+        String sql = "UPDATE Lote SET ESTADO = 'Eliminado' WHERE ID_LOTE = ?";
+
+        try {
+            conn = ConexionOracle.getConnection();
+            stmt = conn.prepareStatement(sql);
+
+            // 1. ID_LOTE (String) - Se envía directamente como String al PreparedStatement
+            stmt.setString(1, idLoteTexto.trim()); // <--- Usa setString
+
+            // Ejecutar la actualización
+            int filasAfectadas = stmt.executeUpdate();
+
+            if (filasAfectadas > 0) {
+                exito = true;
+                System.out.println("Lote con ID " + idLoteTexto + " marcado como 'Eliminado' correctamente.");
+            } else {
+                System.out.println("Advertencia: No se encontró un Lote con ID " + idLoteTexto + " para actualizar.");
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error al intentar eliminar (baja lógica) el lote con ID " + idLoteTexto + ": " + e.getMessage());
+            exito = false;
+        } finally {
+            // Cierre de recursos (idealmente usando un método de utilidad)
+            try {
+                if (stmt != null) stmt.close();
+                if (conn != null) conn.close(); 
+            } catch (SQLException e) {
+                System.err.println("Error al cerrar recursos: " + e.getMessage());
+            }
+        }
+        return exito;
+    }
+    
 }

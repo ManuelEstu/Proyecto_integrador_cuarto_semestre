@@ -66,6 +66,11 @@ public class Administrar_lotes extends javax.swing.JFrame {
         jButton7.setBackground(new java.awt.Color(51, 153, 0));
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setText("Eliminar lote");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         Btn_cancelar.setBackground(new java.awt.Color(51, 153, 0));
         Btn_cancelar.setForeground(new java.awt.Color(255, 255, 255));
@@ -165,6 +170,15 @@ public class Administrar_lotes extends javax.swing.JFrame {
         pGestionInf.setVisible(true);
         pGestionInf.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_informe_producActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // Cierra esta ventana
+        this.dispose();
+        // Abre la otra ventana
+        Eliminar_Lote pElimL = new Eliminar_Lote(this.documento);
+        pElimL.setVisible(true);
+        pElimL.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
