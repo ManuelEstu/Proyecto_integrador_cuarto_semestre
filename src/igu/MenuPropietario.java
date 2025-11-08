@@ -98,7 +98,7 @@ public class MenuPropietario extends javax.swing.JFrame {
 
         Btn_eliminar_predio.setBackground(new java.awt.Color(51, 153, 0));
         Btn_eliminar_predio.setForeground(new java.awt.Color(255, 255, 255));
-        Btn_eliminar_predio.setText("Eliminar predio");
+        Btn_eliminar_predio.setText("Borrar predio");
         Btn_eliminar_predio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_eliminar_predioActionPerformed(evt);
@@ -121,7 +121,7 @@ public class MenuPropietario extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Btn_edit_perfil, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Btn_eliminar_predio)))
+                            .addComponent(Btn_eliminar_predio, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(74, 74, 74)
                         .addComponent(jLabel1))

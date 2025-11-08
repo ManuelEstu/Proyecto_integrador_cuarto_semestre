@@ -11,12 +11,17 @@ package igu;
 import javax.swing.JOptionPane;
 import logica.ControladorEliminarLugar;
 public class EliminarLugar extends javax.swing.JFrame {
-
+    private String documento;
     /**
      * Creates new form EliminarLugar
      */
     public EliminarLugar() {
         initComponents();
+    }
+    
+    public EliminarLugar(String documento) {
+        initComponents();
+        this.documento = documento;
     }
 
     /**
@@ -114,7 +119,7 @@ public class EliminarLugar extends javax.swing.JFrame {
         // Cierra esta ventana
         this.dispose();
         // Abre la otra ventana
-        MenuProductor menuP = new MenuProductor();
+        MenuProductor menuP = new MenuProductor(this.documento);
         menuP.setVisible(true);
         menuP.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_cancelarActionPerformed

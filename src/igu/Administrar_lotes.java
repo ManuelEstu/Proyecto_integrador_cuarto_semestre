@@ -35,8 +35,8 @@ public class Administrar_lotes extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         Btn_crear_lote = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        Btn_editar_lotes = new javax.swing.JButton();
+        Btn_eliminar_lote = new javax.swing.JButton();
         Btn_cancelar = new javax.swing.JButton();
         Btn_informe_produc = new javax.swing.JButton();
 
@@ -58,17 +58,27 @@ public class Administrar_lotes extends javax.swing.JFrame {
         jButton5.setBackground(new java.awt.Color(51, 153, 0));
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Ver lotes");
-
-        jButton6.setBackground(new java.awt.Color(51, 153, 0));
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Editar lote");
-
-        jButton7.setBackground(new java.awt.Color(51, 153, 0));
-        jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setText("Eliminar lote");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        Btn_editar_lotes.setBackground(new java.awt.Color(51, 153, 0));
+        Btn_editar_lotes.setForeground(new java.awt.Color(255, 255, 255));
+        Btn_editar_lotes.setText("Editar lote");
+        Btn_editar_lotes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_editar_lotesActionPerformed(evt);
+            }
+        });
+
+        Btn_eliminar_lote.setBackground(new java.awt.Color(51, 153, 0));
+        Btn_eliminar_lote.setForeground(new java.awt.Color(255, 255, 255));
+        Btn_eliminar_lote.setText("Eliminar lote");
+        Btn_eliminar_lote.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_eliminar_loteActionPerformed(evt);
             }
         });
 
@@ -99,10 +109,10 @@ public class Administrar_lotes extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(137, 137, 137)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(Btn_editar_lotes, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                             .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                             .addComponent(Btn_crear_lote, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(Btn_eliminar_lote, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                             .addComponent(Btn_cancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Btn_informe_produc, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -120,9 +130,9 @@ public class Administrar_lotes extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jButton5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton6)
+                .addComponent(Btn_editar_lotes)
                 .addGap(18, 18, 18)
-                .addComponent(jButton7)
+                .addComponent(Btn_eliminar_lote)
                 .addGap(18, 18, 18)
                 .addComponent(Btn_informe_produc)
                 .addGap(18, 18, 18)
@@ -171,14 +181,32 @@ public class Administrar_lotes extends javax.swing.JFrame {
         pGestionInf.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_informe_producActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void Btn_eliminar_loteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_eliminar_loteActionPerformed
         // Cierra esta ventana
         this.dispose();
         // Abre la otra ventana
         Eliminar_Lote pElimL = new Eliminar_Lote(this.documento);
         pElimL.setVisible(true);
         pElimL.setLocationRelativeTo(null);
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_Btn_eliminar_loteActionPerformed
+
+    private void Btn_editar_lotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_editar_lotesActionPerformed
+        // Cierra esta ventana
+        this.dispose();
+        // Abre la otra ventana
+        EditarLote pEditL = new EditarLote(this.documento);
+        pEditL.setVisible(true);
+        pEditL.setLocationRelativeTo(null);
+    }//GEN-LAST:event_Btn_editar_lotesActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // Cierra esta ventana
+        this.dispose();
+        // Abre la otra ventana
+        VerLotes pVerL = new VerLotes(this.documento);
+        pVerL.setVisible(true);
+        pVerL.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -218,10 +246,10 @@ public class Administrar_lotes extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_cancelar;
     private javax.swing.JButton Btn_crear_lote;
+    private javax.swing.JButton Btn_editar_lotes;
+    private javax.swing.JButton Btn_eliminar_lote;
     private javax.swing.JButton Btn_informe_produc;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
