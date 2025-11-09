@@ -53,19 +53,17 @@
                           <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="Btn_cerrar" pref="168" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="Btn_G_plagas" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="Btn_ver_users" alignment="0" pref="168" max="32767" attributes="0"/>
-                                  <Component id="Btn_edit_perfil" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="Btn_Registro_usuario_n" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="Btn_eliminar_user" alignment="0" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="Btn_G_plagas" alignment="0" max="32767" attributes="0"/>
+                              <Component id="Btn_ver_users" alignment="0" pref="168" max="32767" attributes="0"/>
+                              <Component id="Btn_edit_perfil" alignment="0" max="32767" attributes="0"/>
+                              <Component id="Btn_Registro_usuario_n" alignment="0" max="32767" attributes="0"/>
+                              <Component id="Btn_eliminar_user" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="Btn_ordenar_inspeccion" max="32767" attributes="0"/>
-                              <Component id="jButton8" max="32767" attributes="0"/>
-                              <Component id="jButton9" alignment="0" max="32767" attributes="0"/>
+                              <Component id="Btn_ver_predios" max="32767" attributes="0"/>
+                              <Component id="Btn_ver_lugares" alignment="0" max="32767" attributes="0"/>
                               <Component id="jButton10" alignment="0" max="32767" attributes="0"/>
                               <Component id="jButton11" alignment="1" max="32767" attributes="0"/>
                               <Component id="Btn_G_plantas" alignment="0" max="32767" attributes="0"/>
@@ -84,12 +82,12 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="Btn_Registro_usuario_n" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton8" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Btn_ver_predios" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="Btn_ver_users" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton9" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Btn_ver_lugares" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -198,7 +196,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_ordenar_inspeccionActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton8">
+        <Component class="javax.swing.JButton" name="Btn_ver_predios">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="99" red="33" type="rgb"/>
@@ -208,8 +206,11 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Ver predios"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_ver_prediosActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton9">
+        <Component class="javax.swing.JButton" name="Btn_ver_lugares">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="99" red="33" type="rgb"/>

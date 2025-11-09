@@ -38,8 +38,8 @@ public class MenuFuncionario extends javax.swing.JFrame {
         Btn_edit_perfil = new javax.swing.JButton();
         Btn_cerrar = new javax.swing.JButton();
         Btn_ordenar_inspeccion = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        Btn_ver_predios = new javax.swing.JButton();
+        Btn_ver_lugares = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         Btn_eliminar_user = new javax.swing.JButton();
@@ -99,13 +99,18 @@ public class MenuFuncionario extends javax.swing.JFrame {
             }
         });
 
-        jButton8.setBackground(new java.awt.Color(51, 153, 0));
-        jButton8.setForeground(new java.awt.Color(255, 255, 255));
-        jButton8.setText("Ver predios");
+        Btn_ver_predios.setBackground(new java.awt.Color(51, 153, 0));
+        Btn_ver_predios.setForeground(new java.awt.Color(255, 255, 255));
+        Btn_ver_predios.setText("Ver predios");
+        Btn_ver_predios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_ver_prediosActionPerformed(evt);
+            }
+        });
 
-        jButton9.setBackground(new java.awt.Color(51, 153, 0));
-        jButton9.setForeground(new java.awt.Color(255, 255, 255));
-        jButton9.setText("Ver lugares de producción");
+        Btn_ver_lugares.setBackground(new java.awt.Color(51, 153, 0));
+        Btn_ver_lugares.setForeground(new java.awt.Color(255, 255, 255));
+        Btn_ver_lugares.setText("Ver lugares de producción");
 
         jButton10.setBackground(new java.awt.Color(51, 153, 0));
         jButton10.setForeground(new java.awt.Color(255, 255, 255));
@@ -155,17 +160,16 @@ public class MenuFuncionario extends javax.swing.JFrame {
                         .addGap(66, 66, 66)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(Btn_cerrar, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(Btn_G_plagas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Btn_ver_users, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                                .addComponent(Btn_edit_perfil, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Btn_Registro_usuario_n, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Btn_eliminar_user, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(Btn_G_plagas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Btn_ver_users, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                            .addComponent(Btn_edit_perfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Btn_Registro_usuario_n, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Btn_eliminar_user, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(31, 31, 31)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(Btn_ordenar_inspeccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Btn_ver_predios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Btn_ver_lugares, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Btn_G_plantas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -179,11 +183,11 @@ public class MenuFuncionario extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Btn_Registro_usuario_n)
-                    .addComponent(jButton8))
+                    .addComponent(Btn_ver_predios))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Btn_ver_users)
-                    .addComponent(jButton9))
+                    .addComponent(Btn_ver_lugares))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Btn_ordenar_inspeccion)
@@ -279,6 +283,10 @@ public class MenuFuncionario extends javax.swing.JFrame {
         verU.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_ver_usersActionPerformed
 
+    private void Btn_ver_prediosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ver_prediosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Btn_ver_prediosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -322,11 +330,11 @@ public class MenuFuncionario extends javax.swing.JFrame {
     private javax.swing.JButton Btn_edit_perfil;
     private javax.swing.JButton Btn_eliminar_user;
     private javax.swing.JButton Btn_ordenar_inspeccion;
+    private javax.swing.JButton Btn_ver_lugares;
+    private javax.swing.JButton Btn_ver_predios;
     private javax.swing.JButton Btn_ver_users;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

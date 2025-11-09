@@ -38,7 +38,7 @@ public class MenuProductor extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         Btn_edit_perfil = new javax.swing.JButton();
         Btn_cerrar = new javax.swing.JButton();
-        Btn_solicitar_visita = new javax.swing.JButton();
+        Btn_ver_plantas = new javax.swing.JButton();
         Btn_admin_lotes = new javax.swing.JButton();
         Btn_eliminar_lugar = new javax.swing.JButton();
         Btn_edit_lug = new javax.swing.JButton();
@@ -89,12 +89,12 @@ public class MenuProductor extends javax.swing.JFrame {
             }
         });
 
-        Btn_solicitar_visita.setBackground(new java.awt.Color(51, 153, 0));
-        Btn_solicitar_visita.setForeground(new java.awt.Color(255, 255, 255));
-        Btn_solicitar_visita.setText("Solicitar visita fitosanitaria");
-        Btn_solicitar_visita.addActionListener(new java.awt.event.ActionListener() {
+        Btn_ver_plantas.setBackground(new java.awt.Color(51, 153, 0));
+        Btn_ver_plantas.setForeground(new java.awt.Color(255, 255, 255));
+        Btn_ver_plantas.setText("Ver plantas");
+        Btn_ver_plantas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_solicitar_visitaActionPerformed(evt);
+                Btn_ver_plantasActionPerformed(evt);
             }
         });
 
@@ -129,19 +129,13 @@ public class MenuProductor extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(143, 143, 143))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addComponent(Btn_solicitar_visita, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(35, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(143, 143, 143))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -158,8 +152,12 @@ public class MenuProductor extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(Btn_edit_lug, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(28, 28, 28)
-                                .addComponent(Btn_cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(27, 27, 27))
+                                .addComponent(Btn_ver_plantas, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(27, 27, 27))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(140, 140, 140)
+                .addComponent(Btn_cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,9 +179,9 @@ public class MenuProductor extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Btn_edit_lug)
-                    .addComponent(Btn_cerrar))
+                    .addComponent(Btn_ver_plantas))
                 .addGap(18, 18, 18)
-                .addComponent(Btn_solicitar_visita)
+                .addComponent(Btn_cerrar)
                 .addContainerGap(70, Short.MAX_VALUE))
         );
 
@@ -212,12 +210,12 @@ public class MenuProductor extends javax.swing.JFrame {
         pLogin.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_cerrarActionPerformed
 
-    private void Btn_solicitar_visitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_solicitar_visitaActionPerformed
+    private void Btn_ver_plantasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ver_plantasActionPerformed
         this.dispose();
-        Solicitud_visitas pSolVisit = new Solicitud_visitas(documentoProductor);
-        pSolVisit.setVisible(true);
-        pSolVisit.setLocationRelativeTo(null);
-    }//GEN-LAST:event_Btn_solicitar_visitaActionPerformed
+        Ver_plantas pVerP = new Ver_plantas(documentoProductor);
+        pVerP.setVisible(true);
+        pVerP.setLocationRelativeTo(null);
+    }//GEN-LAST:event_Btn_ver_plantasActionPerformed
 
     private void Btn_registro_lugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_registro_lugarActionPerformed
         this.dispose();
@@ -304,8 +302,8 @@ public class MenuProductor extends javax.swing.JFrame {
     private javax.swing.JButton Btn_edit_perfil;
     private javax.swing.JButton Btn_eliminar_lugar;
     private javax.swing.JButton Btn_registro_lugar;
-    private javax.swing.JButton Btn_solicitar_visita;
     private javax.swing.JButton Btn_ver_lugares;
+    private javax.swing.JButton Btn_ver_plantas;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

@@ -8,9 +8,12 @@ package igu;
  *
  * @author CASA
  */
-import igu.MenuFuncionario;
-public class Ordenar_inspeccion extends javax.swing.JFrame {
+import javax.swing.JOptionPane;
+import logica.ControladorDarOrden;
 
+public class Ordenar_inspeccion extends javax.swing.JFrame {
+    private String documento;
+    private ControladorDarOrden control = new ControladorDarOrden();
     /**
      * Creates new form Ordenar_inspeccion
      */
@@ -18,16 +21,37 @@ public class Ordenar_inspeccion extends javax.swing.JFrame {
         initComponents();
     }
     
-    public Ordenar_inspeccion(String documentoQOrdena) {
+    
+    
+    public Ordenar_inspeccion(String documento) {
         initComponents();
+        this.documento = documento;
         // 1. Establecer el valor por defecto
-        Txt_documento_qordena.setText(documentoQOrdena); 
+        Txt_documento_qordena.setText(documento); 
         
         // 2. Deshabilitar la edición del campo
         // Esto evita que el productor cambie su propio documento al registrar un lugar
         Txt_documento_qordena.setEnabled(false); 
     }
+    
+    private void limpiarCampos() {
+        // 1. Limpiar campos de texto (JTextField)
+        Txt_numICA.setText("");
+        Txt_tecnico.setText("");
+        Txt_fecha.setText("");
 
+        // 2. Limpiar área de texto (JTextArea)
+        comentarios.setText("");
+
+        // 3. Resetear JComboBox (opcional: seleccionar el primer ítem si aplica)
+        tipo.setSelectedIndex(0);
+
+        // El campo Txt_documento_qordena NO se limpia, ya que está deshabilitado y contiene el ID del funcionario.
+
+        // Opcional: enfocar el primer campo para facilitar el siguiente registro
+        Txt_numICA.requestFocusInWindow(); 
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,18 +64,18 @@ public class Ordenar_inspeccion extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        tipo = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        Txt_numICA = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        Txt_tecnico = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        Txt_fecha = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        comentarios = new javax.swing.JTextArea();
         Btn_cancelar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        Btn_ordenar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         Txt_documento_qordena = new javax.swing.JTextField();
 
@@ -63,7 +87,7 @@ public class Ordenar_inspeccion extends javax.swing.JFrame {
 
         jLabel2.setText("Tipo:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Técnica", "Fitosanitaria" }));
+        tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tecnica", "Fitosanitaria" }));
 
         jLabel3.setText("Número registro ICA lugar de producción:");
 
@@ -71,11 +95,11 @@ public class Ordenar_inspeccion extends javax.swing.JFrame {
 
         jLabel5.setText("Fecha realización:");
 
-        jLabel6.setText("Comentarios:");
+        jLabel6.setText("Comentarios (opcional):");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        comentarios.setColumns(20);
+        comentarios.setRows(5);
+        jScrollPane1.setViewportView(comentarios);
 
         Btn_cancelar.setBackground(new java.awt.Color(51, 153, 0));
         Btn_cancelar.setForeground(new java.awt.Color(255, 255, 255));
@@ -86,9 +110,14 @@ public class Ordenar_inspeccion extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(51, 153, 0));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Dar orden");
+        Btn_ordenar.setBackground(new java.awt.Color(51, 153, 0));
+        Btn_ordenar.setForeground(new java.awt.Color(255, 255, 255));
+        Btn_ordenar.setText("Dar orden");
+        Btn_ordenar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_ordenarActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Documento funcionario ordena:");
 
@@ -110,27 +139,27 @@ public class Ordenar_inspeccion extends javax.swing.JFrame {
                                     .addComponent(jLabel5))
                                 .addGap(15, 15, 15)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField3)
+                                    .addComponent(Txt_fecha)
                                     .addComponent(Txt_documento_qordena)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(83, 83, 83)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(Txt_numICA, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jLabel6)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(Txt_tecnico, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(12, 12, 12))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(66, 66, 66)
                         .addComponent(Btn_cancelar)
                         .addGap(88, 88, 88)
-                        .addComponent(jButton1)))
+                        .addComponent(Btn_ordenar)))
                 .addGap(22, 22, 22))
         );
         jPanel1Layout.setVerticalGroup(
@@ -141,15 +170,15 @@ public class Ordenar_inspeccion extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Txt_numICA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Txt_tecnico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -157,7 +186,7 @@ public class Ordenar_inspeccion extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Txt_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
@@ -165,7 +194,7 @@ public class Ordenar_inspeccion extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Btn_cancelar)
-                    .addComponent(jButton1))
+                    .addComponent(Btn_ordenar))
                 .addGap(24, 24, 24))
         );
 
@@ -191,10 +220,42 @@ public class Ordenar_inspeccion extends javax.swing.JFrame {
         // Cierra esta ventana
         this.dispose();
         // Abre la otra ventana
-        MenuFuncionario menuF = new MenuFuncionario();
+        MenuFuncionario menuF = new MenuFuncionario(this.documento);
         menuF.setVisible(true);
         menuF.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_cancelarActionPerformed
+
+    private void Btn_ordenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ordenarActionPerformed
+        // 1. Recolección de datos de la interfaz
+        String numICA = Txt_numICA.getText();
+        String tipoInspeccion = (String) tipo.getSelectedItem();
+        String funcionarioDoc = Txt_documento_qordena.getText();
+        String tecnicoDoc = Txt_tecnico.getText();
+        String fechaRealizacion = Txt_fecha.getText();
+        String comentarioTexto = comentarios.getText();
+        
+        // 2. Llamada al controlador para el registro y validación
+        String resultado = control.validarRegistro(
+            numICA, 
+            tipoInspeccion, 
+            funcionarioDoc,
+            comentarioTexto, 
+            fechaRealizacion, 
+            tecnicoDoc
+        );
+        
+        // 3. Manejo de la respuesta del controlador
+        if (resultado.startsWith("Registro exitoso")) {
+            // Éxito: El controlador devuelve el mensaje de éxito (que incluye el nuevo ID)
+            JOptionPane.showMessageDialog(this, resultado, "Éxito en el Registro", JOptionPane.INFORMATION_MESSAGE);
+            
+            limpiarCampos();
+            
+        } else {
+            // Error: El controlador devuelve el mensaje de error de validación o base de datos
+            JOptionPane.showMessageDialog(this, resultado, "Error de Registro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_Btn_ordenarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -233,9 +294,12 @@ public class Ordenar_inspeccion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_cancelar;
+    private javax.swing.JButton Btn_ordenar;
     private javax.swing.JTextField Txt_documento_qordena;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JTextField Txt_fecha;
+    private javax.swing.JTextField Txt_numICA;
+    private javax.swing.JTextField Txt_tecnico;
+    private javax.swing.JTextArea comentarios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -245,9 +309,6 @@ public class Ordenar_inspeccion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JComboBox<String> tipo;
     // End of variables declaration//GEN-END:variables
 }

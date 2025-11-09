@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;// Necesario para el modelo
 import logica.FiltroDepartamento;
+
 public class Registro_lugar_produccion extends javax.swing.JFrame {
 
     // Lista de los 32 departamentos de Colombia en orden alfabético
