@@ -39,7 +39,7 @@ public class ControladorEliminarLugar {
                         break;
                     case "ERROR_FK":
                         // **Este es el mensaje clave que solicitaste**
-                        mensaje = "🚫 **Error de Restricción (FK):** El lugar de producción con número de registro ICA " + numero_ica + " no se puede eliminar **porque tiene predios asociados**. Por favor, elimine primero todos sus registros.";
+                        mensaje = "🚫 **Error de Restricción (FK):** El lugar de producción con número de registro ICA " + numero_ica + " no se puede eliminar **porque tiene predios o lotes asociados**. (hablar con el DBA)";
                         break;
                     case "NO_ENCONTRADO":
                         mensaje = "⚠️ No se pudo eliminar El lugar de producción con número de registro ICA " + numero_ica + " porque no se encontró en la base de datos.";

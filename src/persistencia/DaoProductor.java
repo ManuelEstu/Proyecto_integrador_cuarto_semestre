@@ -99,7 +99,7 @@ public class DaoProductor {
             // --- MANEJO DE INTEGRIDAD REFERENCIAL (Oracle ORA-02292) ---
             if (e.getErrorCode() == 2292) { 
                 // Esto significa que tiene Lugares de Producción asociados
-                System.out.println("⛔️ El Productor tiene Lugares de Producción asociados (ORA-02292).");
+                System.out.println("⛔️ El Productor tiene Lugares de Producción asociados, no se puede eliminar (hablar con el DBA).");
                 resultado = "ERROR_FK";
             } else {
                 // Otros errores de SQL

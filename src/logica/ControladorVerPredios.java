@@ -26,6 +26,11 @@ public class ControladorVerPredios {
         return DaoPredio2.buscarPredio(documento, nombre);
     }
     
+    public List<DatosPredio2> buscarPredios2(String documento, String nombre) {
+        // La lógica de negocio aquí es mínima, solo delega al DAO
+        return DaoPredio2.buscarPredio2(documento, nombre);
+    }
+    
     public DefaultTableModel cargarTablaPredios(List<DatosPredio2> listaPredios) {
         // Nuevas columnas: Se elimina "Tipo" y se añaden "Usuario" y "Clave"
         String[] titulos = {"NUMERO_REGISTRO_ICA", "NUMERO_PREDIAL", "NOMBRE", "DEPARTAMENTO", "MUNICIPIO", "VEREDA", "NUMERO_ICA_LUGAR_PRODUCCION", "EXTENSION"};

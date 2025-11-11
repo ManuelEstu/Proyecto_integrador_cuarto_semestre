@@ -26,6 +26,11 @@ public class ControladorVerLugares {
         return DaoLugarProduccion2.buscarLugares(documento, nombre);
     }
     
+    public List<DatosLugar2> buscarLugares2(String documento, String numica) {
+        // La lógica de negocio aquí es mínima, solo delega al DAO
+        return DaoLugarProduccion2.buscarLugares2(documento, numica);
+    }
+    
     public DefaultTableModel cargarTablaLugares(List<DatosLugar2> listaLugares) {
         // Nuevas columnas: Se elimina "Tipo" y se añaden "Usuario" y "Clave"
         String[] titulos = {"NUMERO_REGISTRO_ICA", "NUMERO_PREDIAL", "NOMBRE", "NOMBRE EMPRESA", "TELEFONO EMPRESA", "DEPARTAMENTO", "MUNICIPIO", "VEREDA"};

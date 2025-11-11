@@ -43,8 +43,6 @@ public class MenuFuncionario extends javax.swing.JFrame {
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         Btn_eliminar_user = new javax.swing.JButton();
-        Btn_G_plagas = new javax.swing.JButton();
-        Btn_G_plantas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -111,6 +109,11 @@ public class MenuFuncionario extends javax.swing.JFrame {
         Btn_ver_lugares.setBackground(new java.awt.Color(51, 153, 0));
         Btn_ver_lugares.setForeground(new java.awt.Color(255, 255, 255));
         Btn_ver_lugares.setText("Ver lugares de producción");
+        Btn_ver_lugares.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_ver_lugaresActionPerformed(evt);
+            }
+        });
 
         jButton10.setBackground(new java.awt.Color(51, 153, 0));
         jButton10.setForeground(new java.awt.Color(255, 255, 255));
@@ -129,24 +132,6 @@ public class MenuFuncionario extends javax.swing.JFrame {
             }
         });
 
-        Btn_G_plagas.setBackground(new java.awt.Color(51, 153, 0));
-        Btn_G_plagas.setForeground(new java.awt.Color(255, 255, 255));
-        Btn_G_plagas.setText("Gestionar plagas");
-        Btn_G_plagas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_G_plagasActionPerformed(evt);
-            }
-        });
-
-        Btn_G_plantas.setBackground(new java.awt.Color(51, 153, 0));
-        Btn_G_plantas.setForeground(new java.awt.Color(255, 255, 255));
-        Btn_G_plantas.setText("Gestionar plantas");
-        Btn_G_plantas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_G_plantasActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -160,7 +145,6 @@ public class MenuFuncionario extends javax.swing.JFrame {
                         .addGap(66, 66, 66)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(Btn_cerrar, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                            .addComponent(Btn_G_plagas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Btn_ver_users, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
                             .addComponent(Btn_edit_perfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Btn_Registro_usuario_n, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -171,8 +155,7 @@ public class MenuFuncionario extends javax.swing.JFrame {
                             .addComponent(Btn_ver_predios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Btn_ver_lugares, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Btn_G_plantas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jButton11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(86, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -199,12 +182,8 @@ public class MenuFuncionario extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton11)
-                    .addComponent(Btn_G_plagas))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Btn_G_plantas)
                     .addComponent(Btn_cerrar))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -243,20 +222,6 @@ public class MenuFuncionario extends javax.swing.JFrame {
 
     }//GEN-LAST:event_Btn_ordenar_inspeccionActionPerformed
 
-    private void Btn_G_plagasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_G_plagasActionPerformed
-        this.dispose();
-        Gestion_plagas pPlagas = new Gestion_plagas();
-        pPlagas.setVisible(true);
-        pPlagas.setLocationRelativeTo(null);
-    }//GEN-LAST:event_Btn_G_plagasActionPerformed
-
-    private void Btn_G_plantasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_G_plantasActionPerformed
-        this.dispose();
-        Gestion_plantas pPlantas = new Gestion_plantas();
-        pPlantas.setVisible(true);
-        pPlantas.setLocationRelativeTo(null);
-    }//GEN-LAST:event_Btn_G_plantasActionPerformed
-
     private void Btn_eliminar_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_eliminar_userActionPerformed
        // Cierra esta ventana
         this.dispose();
@@ -284,8 +249,19 @@ public class MenuFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_Btn_ver_usersActionPerformed
 
     private void Btn_ver_prediosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ver_prediosActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        Ver_Predios_funcionarios VerPredios = new Ver_Predios_funcionarios(documentoFuncionario);
+        VerPredios.setVisible(true);
+        VerPredios.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_ver_prediosActionPerformed
+
+    private void Btn_ver_lugaresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ver_lugaresActionPerformed
+        String tipo_user = "Funcionario ICA";
+        this.dispose();
+        Ver_Lugares_funcionario pVerL = new Ver_Lugares_funcionario(documentoFuncionario, tipo_user);
+        pVerL.setVisible(true);
+        pVerL.setLocationRelativeTo(null);
+    }//GEN-LAST:event_Btn_ver_lugaresActionPerformed
 
     /**
      * @param args the command line arguments
@@ -323,8 +299,6 @@ public class MenuFuncionario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Btn_G_plagas;
-    private javax.swing.JButton Btn_G_plantas;
     private javax.swing.JButton Btn_Registro_usuario_n;
     private javax.swing.JButton Btn_cerrar;
     private javax.swing.JButton Btn_edit_perfil;

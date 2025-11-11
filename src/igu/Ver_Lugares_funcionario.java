@@ -8,61 +8,71 @@ package igu;
  *
  * @author CASA
  */
-import logica.ControladorVerLotes; // Asegúrate de importar tu controlador
-import logica.DatosLote2;
+import logica.ControladorVerLugares; // Asegúrate de importar tu controlador
+import logica.DatosLugar2;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class VerLotes extends javax.swing.JFrame {
+public class Ver_Lugares_funcionario extends javax.swing.JFrame {
     private String documento;
-    private final ControladorVerLotes controlador;
+    private final ControladorVerLugares controlador;
+    private String tipoUsuario;
     /**
-     * Creates new form VerLotes
+     * Creates new form Ver_Lugares_funcionario
      */
-    public VerLotes() {
+    public Ver_Lugares_funcionario() {
         initComponents();
-        this.controlador = new ControladorVerLotes(); // Inicialización
+        initComponents();
+        this.controlador = new ControladorVerLugares(); // Inicialización
+        iniciarTabla();
     }
     
-    public VerLotes(String documento) {
+    public Ver_Lugares_funcionario(String documento, String tipoUsuario) {
         initComponents();
         this.documento = documento;
-        this.controlador = new ControladorVerLotes(); // Inicialización
+        this.tipoUsuario = tipoUsuario;
+        this.controlador = new ControladorVerLugares(); // Inicialización
+        iniciarTabla();
     }
     
+    private void iniciarTabla() {
+        // Por defecto, carga todos los Funcionarios ICA al iniciar
+        cargarLugares(null, null);
+    }
     
-    private void cargarLotes(String nroICA, String idPlanta) {
-        List<DatosLote2> lista = controlador.buscarLotes(nroICA, idPlanta);
+    private void cargarLugares(String doc, String nom) {
+        List<DatosLugar2> lista = controlador.buscarLugares2(doc, nom);
         
-        if (lista.isEmpty() && idPlanta != null && !idPlanta.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "No se encontró ningún lote que pretenezca al lugar de producción " + nroICA + " con el cultivo " + idPlanta, "Sin resultados", JOptionPane.INFORMATION_MESSAGE);
+        if (lista.isEmpty() && nom != null && !nom.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No se encontró ningún lugar de producción de número ICA " + nom, "Sin resultados", JOptionPane.INFORMATION_MESSAGE);
         } else if (lista.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "No hay lotes registrados en el lugar de producción " + nroICA, "Sin resultados", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No hay lugares de producción registrados de número ICA " + nom, "Sin resultados", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+        if (lista.isEmpty() && doc != null && !doc.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No se encontró ningún lugar de producción perteneciente a " + doc, "Sin resultados", JOptionPane.INFORMATION_MESSAGE);
+        } else if (lista.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No hay lugares de producción registrados pertenecientes a " + doc, "Sin resultados", JOptionPane.INFORMATION_MESSAGE);
         }
         
         // Cargar el modelo de tabla con los datos
-        DefaultTableModel modelo = controlador.cargarTablaLotes(lista);
-        Tab_lotes.setModel(modelo);
+        DefaultTableModel modelo = controlador.cargarTablaLugares(lista);
+        Tab_lugares.setModel(modelo);
         
         // Ajustar el ancho de las columnas AHORA CON LAS 7 COLUMNAS NUEVAS
-        if (Tab_lotes.getColumnCount() > 0) {
-            Tab_lotes.getColumnModel().getColumn(0).setPreferredWidth(100); // Documento
-            Tab_lotes.getColumnModel().getColumn(1).setPreferredWidth(50);  // Nombre
-            Tab_lotes.getColumnModel().getColumn(2).setPreferredWidth(80);  // Apellido
-            Tab_lotes.getColumnModel().getColumn(3).setPreferredWidth(150); // Nombre de Usuario (Nuevo)
-            Tab_lotes.getColumnModel().getColumn(4).setPreferredWidth(50);  // Clave (Nueva)
-            Tab_lotes.getColumnModel().getColumn(5).setPreferredWidth(150); // Email
-            Tab_lotes.getColumnModel().getColumn(6).setPreferredWidth(150); // Info Adicional
-            Tab_lotes.getColumnModel().getColumn(7).setPreferredWidth(100);
-            Tab_lotes.getColumnModel().getColumn(8).setPreferredWidth(80);
-            Tab_lotes.getColumnModel().getColumn(9).setPreferredWidth(150);
-            Tab_lotes.getColumnModel().getColumn(10).setPreferredWidth(80);
-            Tab_lotes.getColumnModel().getColumn(11).setPreferredWidth(150);
-            Tab_lotes.getColumnModel().getColumn(12).setPreferredWidth(80);
+        if (Tab_lugares.getColumnCount() > 0) {
+            Tab_lugares.getColumnModel().getColumn(0).setPreferredWidth(150); // Documento
+            Tab_lugares.getColumnModel().getColumn(1).setPreferredWidth(150);  // Nombre
+            Tab_lugares.getColumnModel().getColumn(2).setPreferredWidth(150);  // Apellido
+            Tab_lugares.getColumnModel().getColumn(3).setPreferredWidth(150); // Nombre de Usuario (Nuevo)
+            Tab_lugares.getColumnModel().getColumn(4).setPreferredWidth(150);  // Clave (Nueva)
+            Tab_lugares.getColumnModel().getColumn(5).setPreferredWidth(150); // Email
+            Tab_lugares.getColumnModel().getColumn(6).setPreferredWidth(150);
+            Tab_lugares.getColumnModel().getColumn(6).setPreferredWidth(150);
         }
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -75,23 +85,21 @@ public class VerLotes extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        Txt_idPlanta = new javax.swing.JTextField();
+        Txt_documento = new javax.swing.JTextField();
         Btn_buscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Tab_lotes = new javax.swing.JTable();
+        Tab_lugares = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+        Txt_numica = new javax.swing.JTextField();
         Btn_cancelar = new javax.swing.JButton();
-        Txt_numICA = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 112));
-        jLabel1.setText("Mis lotes registrados");
+        jLabel1.setText("Lugares de producción registrados");
 
-        jLabel2.setText("Filtro por num ICA lugar:");
-
-        jLabel3.setText("Filtro por id planta:");
+        jLabel2.setText("Filtro por documento productor:");
 
         Btn_buscar.setBackground(new java.awt.Color(51, 153, 0));
         Btn_buscar.setForeground(new java.awt.Color(255, 255, 255));
@@ -102,7 +110,7 @@ public class VerLotes extends javax.swing.JFrame {
             }
         });
 
-        Tab_lotes.setModel(new javax.swing.table.DefaultTableModel(
+        Tab_lugares.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -113,7 +121,9 @@ public class VerLotes extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(Tab_lotes);
+        jScrollPane1.setViewportView(Tab_lugares);
+
+        jLabel3.setText("Filtro por número ICA:");
 
         Btn_cancelar.setBackground(new java.awt.Color(51, 153, 0));
         Btn_cancelar.setForeground(new java.awt.Color(255, 255, 255));
@@ -129,49 +139,54 @@ public class VerLotes extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(72, 72, 72)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(44, 44, 44)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Txt_idPlanta, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
-                            .addComponent(Txt_numICA)))
+                        .addGap(70, 70, 70)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Txt_numica, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(66, 66, 66)
+                                .addComponent(Txt_documento, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
+                        .addGap(134, 134, 134)
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(158, 158, 158)
-                        .addComponent(Btn_buscar))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(168, 168, 168)
-                        .addComponent(Btn_cancelar)))
-                .addContainerGap(99, Short.MAX_VALUE))
+                        .addGap(218, 218, 218)
+                        .addComponent(Btn_buscar)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 51, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(54, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(230, 230, 230)
+                .addComponent(Btn_cancelar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(17, 17, 17)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(Txt_numICA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Txt_documento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(Txt_idPlanta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Txt_numica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(Btn_buscar)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(Btn_cancelar)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -189,29 +204,32 @@ public class VerLotes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_buscarActionPerformed
-        // 1. Obtener el nroICA de usuario seleccionado
-        String nroICASeleccionado = Txt_numICA.getText().trim();
-
         // 2. Obtener el documento a buscar
-        String idPlantaBuscado = Txt_idPlanta.getText().trim();
+        String docBuscado = Txt_documento.getText().trim();
 
-        // 3. Determinar el argumento a pasar al método de carga
-        String idPlantaFinal = null;
-        if (!idPlantaBuscado.isEmpty()) {
-            idPlantaFinal = idPlantaBuscado;
-        }
+        
+        
+        String icaBuscado = Txt_numica.getText().trim();
+
+        
 
         // 4. Llamar al método para cargar/actualizar la tabla
-        cargarLotes(nroICASeleccionado, idPlantaFinal);
+        cargarLugares(docBuscado, icaBuscado);
     }//GEN-LAST:event_Btn_buscarActionPerformed
 
     private void Btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_cancelarActionPerformed
         // Cierra esta ventana
         this.dispose();
-        // Abre la otra ventana
-        MenuProductor menuProduc = new MenuProductor(this.documento);
-        menuProduc.setVisible(true);
-        menuProduc.setLocationRelativeTo(null);
+
+        if (tipoUsuario.equalsIgnoreCase("Funcionario ICA")) {
+            MenuFuncionario menuF = new MenuFuncionario(this.documento);
+            menuF.setVisible(true);
+            menuF.setLocationRelativeTo(null);
+        }else if (tipoUsuario.equalsIgnoreCase("Técnico")) {
+            MenuTecnico menuT = new MenuTecnico(this.documento);
+            menuT.setVisible(true);
+            menuT.setLocationRelativeTo(null);
+        }
     }//GEN-LAST:event_Btn_cancelarActionPerformed
 
     /**
@@ -231,20 +249,20 @@ public class VerLotes extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VerLotes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ver_Lugares_funcionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VerLotes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ver_Lugares_funcionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VerLotes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ver_Lugares_funcionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VerLotes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ver_Lugares_funcionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VerLotes().setVisible(true);
+                new Ver_Lugares_funcionario().setVisible(true);
             }
         });
     }
@@ -252,9 +270,9 @@ public class VerLotes extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_buscar;
     private javax.swing.JButton Btn_cancelar;
-    private javax.swing.JTable Tab_lotes;
-    private javax.swing.JTextField Txt_idPlanta;
-    private javax.swing.JTextField Txt_numICA;
+    private javax.swing.JTable Tab_lugares;
+    private javax.swing.JTextField Txt_documento;
+    private javax.swing.JTextField Txt_numica;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

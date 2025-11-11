@@ -102,7 +102,7 @@ public class DaoFuncionario {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("💥 Error de SQL al eliminar el Funcionario ICA: " + e.getMessage());
+            System.out.println("💥 Error de SQL al eliminar el Funcionario ICA " + e.getMessage());
             // Opcionalmente, puedes manejar errores de integridad referencial aquí
             // (ej: si el funcionario está referenciado en otra tabla y la base de datos lo prohíbe)
         } finally {

@@ -35,10 +35,10 @@ public class MenuTecnico extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         Btn_visita_fit = new javax.swing.JButton();
         Btn_visita_tec = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         Btn_edit_perfil = new javax.swing.JButton();
         Btn_cerrar = new javax.swing.JButton();
         Btn_ver_or = new javax.swing.JButton();
+        Btn_ver_lugares = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,10 +63,6 @@ public class MenuTecnico extends javax.swing.JFrame {
                 Btn_visita_tecActionPerformed(evt);
             }
         });
-
-        jButton3.setBackground(new java.awt.Color(51, 153, 0));
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Notificaciones");
 
         Btn_edit_perfil.setBackground(new java.awt.Color(51, 153, 0));
         Btn_edit_perfil.setForeground(new java.awt.Color(255, 255, 255));
@@ -95,31 +91,40 @@ public class MenuTecnico extends javax.swing.JFrame {
             }
         });
 
+        Btn_ver_lugares.setBackground(new java.awt.Color(51, 153, 0));
+        Btn_ver_lugares.setForeground(new java.awt.Color(255, 255, 255));
+        Btn_ver_lugares.setText("Ver lugares de producción");
+        Btn_ver_lugares.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_ver_lugaresActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addGap(25, 25, 25)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
-                            .addGap(27, 27, 27)
-                            .addComponent(Btn_edit_perfil, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addGap(133, 133, 133)
-                            .addComponent(jLabel1))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addGap(25, 25, 25)
-                            .addComponent(Btn_visita_tec, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Btn_visita_fit, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(133, 133, 133)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(Btn_ver_or, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Btn_edit_perfil, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(Btn_visita_tec, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)
+                                .addComponent(Btn_visita_fit, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(122, 122, 122)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Btn_ver_or, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Btn_cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Btn_cerrar, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                            .addComponent(Btn_ver_lugares, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -134,9 +139,9 @@ public class MenuTecnico extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Btn_edit_perfil)
-                    .addComponent(jButton3))
+                    .addComponent(Btn_ver_or))
                 .addGap(18, 18, 18)
-                .addComponent(Btn_ver_or)
+                .addComponent(Btn_ver_lugares)
                 .addGap(18, 18, 18)
                 .addComponent(Btn_cerrar)
                 .addContainerGap(30, Short.MAX_VALUE))
@@ -172,7 +177,7 @@ public class MenuTecnico extends javax.swing.JFrame {
 
     private void Btn_visita_tecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_visita_tecActionPerformed
         this.dispose();
-        Inspeccion_tec pInspTec = new Inspeccion_tec();
+        Inspeccion_tec pInspTec = new Inspeccion_tec(documentoTecnico);
         pInspTec.setVisible(true);
         pInspTec.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_visita_tecActionPerformed
@@ -191,6 +196,14 @@ public class MenuTecnico extends javax.swing.JFrame {
         pVerOr.setVisible(true);
         pVerOr.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_ver_orActionPerformed
+
+    private void Btn_ver_lugaresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ver_lugaresActionPerformed
+        String tipo_user = "Técnico";
+        this.dispose();
+        Ver_Lugares_funcionario pVerL = new Ver_Lugares_funcionario(documentoTecnico, tipo_user);
+        pVerL.setVisible(true);
+        pVerL.setLocationRelativeTo(null);
+    }//GEN-LAST:event_Btn_ver_lugaresActionPerformed
 
     /**
      * @param args the command line arguments
@@ -230,10 +243,10 @@ public class MenuTecnico extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_cerrar;
     private javax.swing.JButton Btn_edit_perfil;
+    private javax.swing.JButton Btn_ver_lugares;
     private javax.swing.JButton Btn_ver_or;
     private javax.swing.JButton Btn_visita_fit;
     private javax.swing.JButton Btn_visita_tec;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

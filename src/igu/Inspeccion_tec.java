@@ -9,12 +9,17 @@ package igu;
  * @author CASA
  */
 public class Inspeccion_tec extends javax.swing.JFrame {
-
+    private String documento;
     /**
      * Creates new form Inspeccion_tec
      */
     public Inspeccion_tec() {
         initComponents();
+    }
+    
+    public Inspeccion_tec(String documento) {
+        initComponents();
+        this.documento = documento;
     }
 
     /**
@@ -37,8 +42,6 @@ public class Inspeccion_tec extends javax.swing.JFrame {
         jCheckBox5 = new javax.swing.JCheckBox();
         jCheckBox6 = new javax.swing.JCheckBox();
         jCheckBox7 = new javax.swing.JCheckBox();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -51,7 +54,7 @@ public class Inspeccion_tec extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 0, 112));
         jLabel1.setText("Inspección Técnica");
 
-        jLabel2.setText("Num. Registro ICA lugar producción inspeccionado:");
+        jLabel2.setText("ID de la orden de la inspección:");
 
         jCheckBox1.setText("Área de acopio");
 
@@ -66,8 +69,6 @@ public class Inspeccion_tec extends javax.swing.JFrame {
         jCheckBox6.setText("Área sanitaria y de la lavamanos");
 
         jCheckBox7.setText("Área de almacenamiento de herramientas");
-
-        jLabel3.setText("Fecha: ");
 
         jLabel4.setText("Comentarios y observaciones:");
 
@@ -104,28 +105,23 @@ public class Inspeccion_tec extends javax.swing.JFrame {
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jCheckBox1)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jCheckBox2)
-                                .addComponent(jCheckBox3)
-                                .addComponent(jCheckBox5)
-                                .addComponent(jCheckBox6)
-                                .addComponent(jCheckBox7)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addGap(256, 256, 256)
-                                    .addComponent(jTextField2))
-                                .addComponent(jCheckBox4))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addComponent(Btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(83, 83, 83)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                            .addComponent(jCheckBox1)
+                            .addComponent(jCheckBox2)
+                            .addComponent(jCheckBox3)
+                            .addComponent(jCheckBox5)
+                            .addComponent(jCheckBox6)
+                            .addComponent(jCheckBox7)
+                            .addComponent(jCheckBox4)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(42, 42, 42)
+                                .addComponent(Btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(83, 83, 83)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(77, 77, 77)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,10 +132,6 @@ public class Inspeccion_tec extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jCheckBox1)
                 .addGap(18, 18, 18)
@@ -161,7 +153,8 @@ public class Inspeccion_tec extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Btn_cancelar)
-                    .addComponent(jButton1)))
+                    .addComponent(jButton1))
+                .addGap(40, 40, 40))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -184,7 +177,7 @@ public class Inspeccion_tec extends javax.swing.JFrame {
         // Cierra esta ventana
         this.dispose();
         // Abre la otra ventana
-        MenuTecnico menuT = new MenuTecnico();
+        MenuTecnico menuT = new MenuTecnico(this.documento);
         menuT.setVisible(true);
         menuT.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_cancelarActionPerformed
@@ -236,12 +229,10 @@ public class Inspeccion_tec extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

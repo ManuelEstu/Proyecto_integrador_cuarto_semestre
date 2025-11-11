@@ -206,7 +206,7 @@ public class Registro_predio extends javax.swing.JFrame {
         initComponents();
         inicializarDepartamentos();
         // Inicialmente, cargar el JComboBox de municipios vacío o con una opción
-        Municipio.setModel(new DefaultComboBoxModel<>(new String[]{"-- Seleccione Departamento Primero --"}));
+        Municipio.setModel(new DefaultComboBoxModel<>(new String[]{"Seleccione Departamento Primero"}));
         // 1. Establecer el valor por defecto
         Txt_documento_dueno.setText(documentoDueno); 
         this.documentoDueno = documentoDueno;

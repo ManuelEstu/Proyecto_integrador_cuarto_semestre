@@ -36,7 +36,6 @@ public class MenuPropietario extends javax.swing.JFrame {
         Btn_Registro_predio = new javax.swing.JButton();
         Btn_ver_predios = new javax.swing.JButton();
         Btn_cerrar = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
         Btn_edit_perfil = new javax.swing.JButton();
         Btn_edit_predio = new javax.swing.JButton();
         Btn_eliminar_predio = new javax.swing.JButton();
@@ -73,10 +72,6 @@ public class MenuPropietario extends javax.swing.JFrame {
                 Btn_cerrarActionPerformed(evt);
             }
         });
-
-        jButton5.setBackground(new java.awt.Color(51, 153, 0));
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Ver perfil");
 
         Btn_edit_perfil.setBackground(new java.awt.Color(51, 153, 0));
         Btn_edit_perfil.setForeground(new java.awt.Color(255, 255, 255));
@@ -119,15 +114,12 @@ public class MenuPropietario extends javax.swing.JFrame {
                             .addComponent(Btn_edit_predio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(37, 37, 37)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Btn_edit_perfil, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Btn_eliminar_predio, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(Btn_eliminar_predio, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Btn_cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(74, 74, 74)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(102, 102, 102)
-                        .addComponent(Btn_cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel1)))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -138,7 +130,7 @@ public class MenuPropietario extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Btn_Registro_predio)
-                    .addComponent(jButton5))
+                    .addComponent(Btn_eliminar_predio))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Btn_ver_predios)
@@ -146,10 +138,8 @@ public class MenuPropietario extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Btn_edit_predio)
-                    .addComponent(Btn_eliminar_predio))
-                .addGap(18, 18, 18)
-                .addComponent(Btn_cerrar)
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addComponent(Btn_cerrar))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -253,7 +243,6 @@ public class MenuPropietario extends javax.swing.JFrame {
     private javax.swing.JButton Btn_edit_predio;
     private javax.swing.JButton Btn_eliminar_predio;
     private javax.swing.JButton Btn_ver_predios;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

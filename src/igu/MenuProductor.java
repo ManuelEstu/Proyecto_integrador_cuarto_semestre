@@ -69,7 +69,7 @@ public class MenuProductor extends javax.swing.JFrame {
 
         jButton3.setBackground(new java.awt.Color(51, 153, 0));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Notificaciones");
+        jButton3.setText("Ver inspecciones");
 
         Btn_edit_perfil.setBackground(new java.awt.Color(51, 153, 0));
         Btn_edit_perfil.setForeground(new java.awt.Color(255, 255, 255));

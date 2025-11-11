@@ -47,7 +47,7 @@ public class ControladorEliminarUser {
                     mensaje = "✅ El Funcionario ICA con documento " + documento + " ha sido **eliminado exitosamente**.";
                 } else {
                     // El DAO ya maneja el mensaje en consola, pero retornamos un mensaje de error al UI
-                    mensaje = "⚠️ No se pudo eliminar el Funcionario ICA con documento " + documento + ". (Puede que no exista).";
+                    mensaje = "⚠️ No se pudo eliminar el Funcionario ICA con documento " + documento + ". (Puede que no exista) o que tenga inspecciones asociadas (hablar con el DBA).";
                 }
                 break;
             case "productor":
@@ -60,7 +60,7 @@ public class ControladorEliminarUser {
                         break;
                     case "ERROR_FK":
                         // **Este es el mensaje clave que solicitaste**
-                        mensaje = "🚫 **Error de Restricción (FK):** El Productor con documento " + documento + " no se puede eliminar **porque tiene Lugares de Producción asociados**. Por favor, elimine primero todos sus registros de Lugar de Producción.";
+                        mensaje = "🚫 **Error de Restricción (FK):** El Productor con documento " + documento + " no se puede eliminar **porque tiene Lugares de Producción asociados**. (Hablar con el DBA).";
                         break;
                     case "NO_ENCONTRADO":
                         mensaje = "⚠️ No se pudo eliminar el Productor con documento " + documento + " porque no se encontró en la base de datos.";
@@ -83,7 +83,7 @@ public class ControladorEliminarUser {
                         break;
                     case "ERROR_FK":
                         // CORREGIDO: "Propietario" y el motivo de la FK (asumimos "predios")
-                        mensaje = "🚫 **Error de Restricción (FK):** El Propietario con documento " + documento + " no se puede eliminar **porque tiene Predios asociados**. Por favor, elimine primero todos sus registros de Predios asociados.";
+                        mensaje = "🚫 **Error de Restricción (FK):** El Propietario con documento " + documento + " no se puede eliminar **porque tiene Predios asociados**. (hablar con el DBA).";
                         break;
                     case "NO_ENCONTRADO":
                         // CORREGIDO: "Propietario"
@@ -101,7 +101,7 @@ public class ControladorEliminarUser {
                     mensaje = "✅ El Técnico con documento " + documento + " ha sido **eliminado exitosamente**.";
                 } else {
                     // El DAO ya maneja el mensaje en consola, pero retornamos un mensaje de error al UI
-                    mensaje = "⚠️ No se pudo eliminar el Técnico con documento " + documento + ". (Puede que no exista).";
+                    mensaje = "⚠️ No se pudo eliminar el Técnico con documento " + documento + ". (Puede que no exista) o que tenga inspecciones asociadas (hablar con el DBA).";
                 }
                 break;
             default:
