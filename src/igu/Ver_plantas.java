@@ -18,6 +18,7 @@ public class Ver_plantas extends javax.swing.JFrame {
 
     private String documento;
     private final ControladorVerPlantas controlador;
+    private String tipoUsuario;
     /**
      * Creates new form Ver_lugares
      */
@@ -27,9 +28,10 @@ public class Ver_plantas extends javax.swing.JFrame {
         iniciarTabla();
     }
     
-    public Ver_plantas(String documento) {
+    public Ver_plantas(String documento, String tipoUsuario) {
         initComponents();
         this.documento = documento;
+        this.tipoUsuario = tipoUsuario;
         this.controlador = new ControladorVerPlantas(); // Inicialización
         iniciarTabla(); // Llama a un nuevo método para la configuración inicial
     }
@@ -193,12 +195,17 @@ public class Ver_plantas extends javax.swing.JFrame {
     }//GEN-LAST:event_Btn_buscarActionPerformed
 
     private void Btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_cancelarActionPerformed
-        // Cierra esta ventana
         this.dispose();
-        // Abre la otra ventana
-        MenuProductor menuProduc = new MenuProductor(this.documento);
-        menuProduc.setVisible(true);
-        menuProduc.setLocationRelativeTo(null);
+
+        if (tipoUsuario.equalsIgnoreCase("Funcionario ICA")) {
+            MenuFuncionario menuF = new MenuFuncionario(this.documento);
+            menuF.setVisible(true);
+            menuF.setLocationRelativeTo(null);
+        }else if (tipoUsuario.equalsIgnoreCase("Productor")) {
+            MenuProductor menuProduc = new MenuProductor(this.documento);
+            menuProduc.setVisible(true);
+            menuProduc.setLocationRelativeTo(null);
+        }
     }//GEN-LAST:event_Btn_cancelarActionPerformed
 
     /**

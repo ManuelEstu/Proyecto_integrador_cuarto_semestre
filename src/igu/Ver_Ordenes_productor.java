@@ -14,35 +14,28 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class Ver_ordenes extends javax.swing.JFrame {
+public class Ver_Ordenes_productor extends javax.swing.JFrame {
     private String documento;
     private final ControladorVerOrdenes controlador;
     /**
      * Creates new form Ver_ordenes
      */
-    public Ver_ordenes() {
+    public Ver_Ordenes_productor() {
         initComponents();
         this.controlador = new ControladorVerOrdenes(); // Inicialización
-        iniciarTabla();
     }
     
-    public Ver_ordenes(String documento) {
+    public Ver_Ordenes_productor(String documento) {
         initComponents();
         this.documento = documento;
         this.controlador = new ControladorVerOrdenes(); // Inicialización
-        iniciarTabla();
     }
     
-    private void iniciarTabla() {
-        // Por defecto, carga todos los Funcionarios ICA al iniciar
-        cargarOrdenes(this.documento, null);
-    }
-    
-    private void cargarOrdenes(String doc, String tip) {
-        List<DatosOrden> lista = controlador.buscarOrdenes(doc, tip);
+    private void cargarOrdenes(String ica, String tip) {
+        List<DatosOrden> lista = controlador.buscarOrdenes2(ica, tip);
         
         if (lista.isEmpty() && tip != null && !tip.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "No se encontró ninguna orden de inspección de tipo " + tip + " con el documento " + doc, "Sin resultados", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No se encontró ninguna orden de inspección de tipo " + tip + " para el lugar " + ica, "Sin resultados", JOptionPane.INFORMATION_MESSAGE);
         } else if (lista.isEmpty()) {
             JOptionPane.showMessageDialog(this, "No hay ordenes pendientes de tipo " + tip, "Sin resultados", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -70,21 +63,26 @@ public class Ver_ordenes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        tipo = new javax.swing.JComboBox<>();
         Btn_buscar8 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tab_ordenes = new javax.swing.JTable();
         Btn_cancelar = new javax.swing.JButton();
-        tipo = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        Txt_numica = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 112));
-        jLabel1.setText("Mis Inspecciones pendientes");
+        jLabel1.setText("Mis programadas pendientes");
 
         jLabel2.setText("Filtro por tipo:");
+
+        tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tecnica", "Fitosanitaria" }));
 
         Btn_buscar8.setBackground(new java.awt.Color(51, 153, 0));
         Btn_buscar8.setForeground(new java.awt.Color(255, 255, 255));
@@ -117,50 +115,72 @@ public class Ver_ordenes extends javax.swing.JFrame {
             }
         });
 
-        tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tecnica", "Fitosanitaria" }));
+        jLabel3.setText("Filtro por número ICA del lugar:");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(154, 154, 154)
+                                .addComponent(Btn_buscar8))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2))
+                                .addGap(47, 47, 47)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(Txt_numica)
+                                    .addComponent(tipo, 0, 134, Short.MAX_VALUE)))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(229, 229, 229)
+                        .addComponent(Btn_cancelar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(jLabel1)))
+                .addContainerGap(62, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(Txt_numica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(Btn_buscar8)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(Btn_cancelar)
+                .addGap(14, 14, 14))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(336, 336, 336)
-                                    .addComponent(Btn_buscar8))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(153, 153, 153)
-                                    .addComponent(Btn_cancelar)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addGap(57, 57, 57)
-                                    .addComponent(tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(163, 163, 163)
-                        .addComponent(jLabel1)))
-                .addContainerGap(87, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(Btn_buscar8)
-                    .addComponent(tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(Btn_cancelar)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -169,24 +189,28 @@ public class Ver_ordenes extends javax.swing.JFrame {
     private void Btn_buscar8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_buscar8ActionPerformed
         // 2. Obtener el documento a buscar
         String tipoInspeccion = (String) tipo.getSelectedItem();
+        String icaIngre = Txt_numica.getText();
 
         // 3. Determinar el argumento a pasar al método de carga
-        String tipoFinal = null;
-        if (!tipoInspeccion.isEmpty()) {
-            tipoFinal = tipoInspeccion;
+        String icaFinal = null;
+        if (!icaIngre.isEmpty()) {
+            icaFinal = icaIngre;
+            // 4. Llamar al método para cargar/actualizar la tabla
+            cargarOrdenes(icaFinal, tipoInspeccion);
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe ingresar el número ICA del lugar de producción ", "Sin resultados", JOptionPane.INFORMATION_MESSAGE);
         }
 
-        // 4. Llamar al método para cargar/actualizar la tabla
-        cargarOrdenes(this.documento, tipoFinal);
+        
     }//GEN-LAST:event_Btn_buscar8ActionPerformed
 
     private void Btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_cancelarActionPerformed
         // Cierra esta ventana
         this.dispose();
         // Abre la otra ventana
-        MenuTecnico menuTec = new MenuTecnico(this.documento);
-        menuTec.setVisible(true);
-        menuTec.setLocationRelativeTo(null);
+        MenuProductor menuProduc = new MenuProductor(this.documento);
+        menuProduc.setVisible(true);
+        menuProduc.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_cancelarActionPerformed
 
     /**
@@ -206,20 +230,20 @@ public class Ver_ordenes extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Ver_ordenes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ver_Ordenes_productor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Ver_ordenes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ver_Ordenes_productor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Ver_ordenes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ver_Ordenes_productor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Ver_ordenes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ver_Ordenes_productor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Ver_ordenes().setVisible(true);
+                new Ver_Ordenes_productor().setVisible(true);
             }
         });
     }
@@ -228,8 +252,11 @@ public class Ver_ordenes extends javax.swing.JFrame {
     private javax.swing.JButton Btn_buscar8;
     private javax.swing.JButton Btn_cancelar;
     private javax.swing.JTable Tab_ordenes;
+    private javax.swing.JTextField Txt_numica;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> tipo;
     // End of variables declaration//GEN-END:variables

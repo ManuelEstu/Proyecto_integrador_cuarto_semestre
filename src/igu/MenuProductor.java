@@ -70,6 +70,11 @@ public class MenuProductor extends javax.swing.JFrame {
         jButton3.setBackground(new java.awt.Color(51, 153, 0));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Ver inspecciones");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         Btn_edit_perfil.setBackground(new java.awt.Color(51, 153, 0));
         Btn_edit_perfil.setForeground(new java.awt.Color(255, 255, 255));
@@ -211,8 +216,9 @@ public class MenuProductor extends javax.swing.JFrame {
     }//GEN-LAST:event_Btn_cerrarActionPerformed
 
     private void Btn_ver_plantasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ver_plantasActionPerformed
+        String tipo_user = "Productor";
         this.dispose();
-        Ver_plantas pVerP = new Ver_plantas(documentoProductor);
+        Ver_plantas pVerP = new Ver_plantas(documentoProductor, tipo_user);
         pVerP.setVisible(true);
         pVerP.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_ver_plantasActionPerformed
@@ -259,6 +265,13 @@ public class MenuProductor extends javax.swing.JFrame {
         VerLug.setVisible(true);
         VerLug.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_ver_lugaresActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        this.dispose();
+        Ver_Ordenes_productor VerOr = new Ver_Ordenes_productor(documentoProductor);
+        VerOr.setVisible(true);
+        VerOr.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

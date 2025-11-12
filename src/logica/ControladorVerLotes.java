@@ -26,6 +26,11 @@ public class ControladorVerLotes {
         return DaoLote.buscarLotes(numeroICALugar, idPlanta);
     }
     
+    public List<DatosLote2> buscarLotes2(String numeroICALugar) {
+        // La lógica de negocio aquí es mínima, solo delega al DAO
+        return DaoLote.buscarLotes2(numeroICALugar);
+    }
+    
     public DefaultTableModel cargarTablaLotes(List<DatosLote2> listaLotes) {
         // Nuevas columnas: Se elimina "Tipo" y se añaden "Usuario" y "Clave"
         String[] titulos = {"ID", "NRO", "ID planta", "Lugar producción", "Area", "Sembrado", "Eliminar", "Estado", "NRO Plantas", "Recolectar", "cantidad esperada", "Se recolectó", "Cantidad real"};

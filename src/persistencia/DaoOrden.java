@@ -173,4 +173,61 @@ public class DaoOrden {
         return listaOrdenes;
     }
     
+    public List<DatosOrden> obtenerTodasLasOrdenes2(String numica, String tipo) {
+        List<DatosOrden> listaOrdenes = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        // La consulta trae los campos necesarios: ID y Nombre Común.
+        String sql = "SELECT ID, TIPO, DOCUMENTO_FUNCIONARIO_ORDENA, NUMERO_ICA_LUGAR_PRODUCCION, NUMERO_DOCUMENTO_TECNICO, FECHA_ESTIMADA, ESTADO, COMENTARIOS FROM ORDEN_INSPECCION WHERE NUMERO_ICA_LUGAR_PRODUCCION = ? and ESTADO = 'pendiente'";
+        
+        // Si se proporciona un documento, se añade la cláusula WHERE
+        boolean buscarPorTipo = (tipo != null && !tipo.trim().isEmpty());
+        if (buscarPorTipo) {
+            sql += " AND TIPO = ?";
+        }
+        
+        try {
+            conn = ConexionOracle.getConnection();
+            ps = conn.prepareStatement(sql);
+            
+            ps.setString(1, numica.trim());
+            // Asignar el parámetro si se busca por tipo
+            if (buscarPorTipo) {
+                ps.setString(2, tipo.trim());
+            }
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("ID");
+                String tip = rs.getString("TIPO");
+                String funcionario = rs.getString("DOCUMENTO_FUNCIONARIO_ORDENA");
+                String lugar = rs.getString("NUMERO_ICA_LUGAR_PRODUCCION");
+                String tec = rs.getString("NUMERO_DOCUMENTO_TECNICO");
+                String fecha = rs.getString("FECHA_ESTIMADA");
+                String estado = rs.getString("ESTADO");
+                String comentarios = rs.getString("COMENTARIOS");
+                
+                // Crea un objeto Planta con los datos de la DB
+                DatosOrden orden = new DatosOrden(id, tip, funcionario, lugar, tec, fecha, estado, comentarios);
+                listaOrdenes.add(orden);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("💥 Error al obtener las ordenes de la BD: " + e.getMessage());
+        } finally {
+            // Asegurarse de cerrar los recursos
+            ConexionOracle.cerrarConexion(conn);
+            try {
+                if (ps != null) ps.close();
+                if (rs != null) rs.close();
+            } catch (SQLException ex) {
+                System.err.println("Error cerrando recursos: " + ex.getMessage());
+            }
+        }
+
+        return listaOrdenes;
+    }
+    
 }

@@ -14,29 +14,35 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class VerLotes extends javax.swing.JFrame {
+public class Ver_lotes_funcionario extends javax.swing.JFrame {
     private String documento;
     private final ControladorVerLotes controlador;
     /**
-     * Creates new form VerLotes
+     * Creates new form Ver_lotes_funcionario
      */
-    public VerLotes() {
+    public Ver_lotes_funcionario() {
         initComponents();
-        this.controlador = new ControladorVerLotes(); // Inicialización
+        this.controlador = new ControladorVerLotes();
+        iniciarTabla();
     }
     
-    public VerLotes(String documento) {
+    public Ver_lotes_funcionario(String documento) {
         initComponents();
+        this.controlador = new ControladorVerLotes();
         this.documento = documento;
-        this.controlador = new ControladorVerLotes(); // Inicialización
+        iniciarTabla();
     }
     
+    private void iniciarTabla() {
+        // Por defecto, carga todos los Funcionarios ICA al iniciar
+        cargarLotes(null);
+    }
     
-    private void cargarLotes(String nroICA, String idPlanta) {
-        List<DatosLote2> lista = controlador.buscarLotes(nroICA, idPlanta);
+    private void cargarLotes(String nroICA) {
+        List<DatosLote2> lista = controlador.buscarLotes2(nroICA);
         
-        if (lista.isEmpty() && idPlanta != null && !idPlanta.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "No se encontró ningún lote que pretenezca al lugar de producción " + nroICA + " con el cultivo " + idPlanta, "Sin resultados", JOptionPane.INFORMATION_MESSAGE);
+        if (lista.isEmpty() && nroICA != null && !nroICA.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No se encontró ningún lote que pretenezca al lugar de producción " + nroICA, "Sin resultados", JOptionPane.INFORMATION_MESSAGE);
         } else if (lista.isEmpty()) {
             JOptionPane.showMessageDialog(this, "No hay lotes registrados en el lugar de producción " + nroICA, "Sin resultados", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -62,7 +68,7 @@ public class VerLotes extends javax.swing.JFrame {
             Tab_lotes.getColumnModel().getColumn(12).setPreferredWidth(80);
         }
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -75,23 +81,19 @@ public class VerLotes extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        Txt_idPlanta = new javax.swing.JTextField();
+        Txt_numICA = new javax.swing.JTextField();
         Btn_buscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tab_lotes = new javax.swing.JTable();
         Btn_cancelar = new javax.swing.JButton();
-        Txt_numICA = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 112));
-        jLabel1.setText("Mis lotes registrados");
+        jLabel1.setText("Lotes registrados");
 
         jLabel2.setText("Filtro por num ICA lugar:");
-
-        jLabel3.setText("Filtro por id planta:");
 
         Btn_buscar.setBackground(new java.awt.Color(51, 153, 0));
         Btn_buscar.setForeground(new java.awt.Color(255, 255, 255));
@@ -128,50 +130,47 @@ public class VerLotes extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(106, 106, 106)
+                        .addComponent(jLabel2)
+                        .addGap(49, 49, 49)
+                        .addComponent(Txt_numICA, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(237, 237, 237)
+                        .addComponent(Btn_cancelar)))
+                .addGap(93, 93, 93))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(72, 72, 72)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(44, 44, 44)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Txt_idPlanta, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
-                            .addComponent(Txt_numICA)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
+                        .addGap(205, 205, 205)
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(158, 158, 158)
-                        .addComponent(Btn_buscar))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(168, 168, 168)
-                        .addComponent(Btn_cancelar)))
-                .addContainerGap(99, Short.MAX_VALUE))
+                        .addGap(228, 228, 228)
+                        .addComponent(Btn_buscar)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(11, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(Txt_numICA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(Txt_idPlanta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addComponent(Btn_buscar)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(Btn_cancelar)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGap(15, 15, 15))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -192,29 +191,23 @@ public class VerLotes extends javax.swing.JFrame {
         // 1. Obtener el nroICA de usuario seleccionado
         String nroICASeleccionado = Txt_numICA.getText().trim();
 
-        // 2. Obtener el documento a buscar
-        String idPlantaBuscado = Txt_idPlanta.getText().trim();
-
         // 3. Determinar el argumento a pasar al método de carga
         String icaFinal = null;
         if (!nroICASeleccionado.isEmpty()) {
             icaFinal = nroICASeleccionado;
-            // 4. Llamar al método para cargar/actualizar la tabla
-            cargarLotes(icaFinal, idPlantaBuscado);
-        } else {
-            JOptionPane.showMessageDialog(this, "Debe ingresar el número ICA del lugar de producción al que pertenece el lote ", "Sin resultados", JOptionPane.INFORMATION_MESSAGE);
         }
 
-        
+        // 4. Llamar al método para cargar/actualizar la tabla
+        cargarLotes(icaFinal);
     }//GEN-LAST:event_Btn_buscarActionPerformed
 
     private void Btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_cancelarActionPerformed
         // Cierra esta ventana
         this.dispose();
         // Abre la otra ventana
-        MenuProductor menuProduc = new MenuProductor(this.documento);
-        menuProduc.setVisible(true);
-        menuProduc.setLocationRelativeTo(null);
+        MenuFuncionario menuF = new MenuFuncionario(this.documento);
+        menuF.setVisible(true);
+        menuF.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_cancelarActionPerformed
 
     /**
@@ -234,20 +227,20 @@ public class VerLotes extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VerLotes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ver_lotes_funcionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VerLotes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ver_lotes_funcionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VerLotes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ver_lotes_funcionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VerLotes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ver_lotes_funcionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VerLotes().setVisible(true);
+                new Ver_lotes_funcionario().setVisible(true);
             }
         });
     }
@@ -256,11 +249,9 @@ public class VerLotes extends javax.swing.JFrame {
     private javax.swing.JButton Btn_buscar;
     private javax.swing.JButton Btn_cancelar;
     private javax.swing.JTable Tab_lotes;
-    private javax.swing.JTextField Txt_idPlanta;
     private javax.swing.JTextField Txt_numICA;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

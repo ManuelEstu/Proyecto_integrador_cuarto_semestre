@@ -398,4 +398,64 @@ public class DaoLote {
         return listaLotes;
     }
     
+    public List<DatosLote2> buscarLotes2(String numeroICALugar) {
+        List<DatosLote2> listaLotes = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        boolean icaPresente = (numeroICALugar != null && !numeroICALugar.trim().isEmpty());
+        // Mapeo del tipo de usuario en el JComboBox a la tabla en la base de datos
+        String tablaDB = "Lote";
+
+        // Construcción dinámica del query
+        String sql = "SELECT ID_LOTE, NRO_LOTE, ID_PLANTA, NRO_REGISTRO_ICA_LUGARP, AREA_DE_LOTE, FECHA_DE_SIEMBRA, FECHA_DE_ELIMINACION, ESTADO, CANTIDAD_DE_PLANTAS, FECHA_PROYEC_RECOLEC, CANT_PROYEC_RECOLEC, FECHA_RECOLECCION, CANT_RECOLECTADA";
+        sql += " FROM " + tablaDB;
+        
+        if (icaPresente) {
+                // Utilizamos el placeholder '?' para mayor seguridad
+                sql += " WHERE NRO_REGISTRO_ICA_LUGARP =  " + numeroICALugar;
+            }
+
+        try {
+            conn = ConexionOracle.getConnection(); // Asumo este método en tu clase Conexion
+            ps = conn.prepareStatement(sql);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                DatosLote2 lote = new DatosLote2();
+                lote.setID_LOTE(rs.getString("ID_LOTE"));
+                lote.setNRO_LOTE(rs.getString("NRO_LOTE"));
+                lote.setID_PLANTA(rs.getString("ID_PLANTA")); // Nota: En sistemas reales, ¡NO expongas la clave!
+                lote.setNRO_REGISTRO_ICA_LUGARP(rs.getString("NRO_REGISTRO_ICA_LUGARP"));
+                lote.setAREA_DE_LOTE(rs.getString("AREA_DE_LOTE"));
+                lote.setFECHA_DE_SIEMBRA(rs.getString("FECHA_DE_SIEMBRA"));
+                lote.setFECHA_DE_ELIMINACION(rs.getString("FECHA_DE_ELIMINACION"));
+                lote.setESTADO(rs.getString("ESTADO"));
+                lote.setCANTIDAD_DE_PLANTAS(rs.getString("CANTIDAD_DE_PLANTAS"));
+                lote.setFECHA_PROYEC_RECOLEC(rs.getString("FECHA_PROYEC_RECOLEC"));
+                lote.setCANT_PROYEC_RECOLEC(rs.getString("CANT_PROYEC_RECOLEC"));
+                lote.setFECHA_RECOLECCION(rs.getString("FECHA_RECOLECCION"));
+                lote.setCANT_RECOLECTADA(rs.getString("CANT_RECOLECTADA"));
+
+                listaLotes.add(lote);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace(); // Manejo de excepciones adecuado en producción
+        } finally {
+            // Cierre de recursos
+            try {
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
+                if (conn != null) conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+
+        return listaLotes;
+    }
+    
 }

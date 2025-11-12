@@ -43,6 +43,8 @@ public class MenuFuncionario extends javax.swing.JFrame {
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         Btn_eliminar_user = new javax.swing.JButton();
+        Btn_ver_lotes = new javax.swing.JButton();
+        Btn_ver_plantas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -132,6 +134,24 @@ public class MenuFuncionario extends javax.swing.JFrame {
             }
         });
 
+        Btn_ver_lotes.setBackground(new java.awt.Color(51, 153, 0));
+        Btn_ver_lotes.setForeground(new java.awt.Color(255, 255, 255));
+        Btn_ver_lotes.setText("Ver lotes");
+        Btn_ver_lotes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_ver_lotesActionPerformed(evt);
+            }
+        });
+
+        Btn_ver_plantas.setBackground(new java.awt.Color(51, 153, 0));
+        Btn_ver_plantas.setForeground(new java.awt.Color(255, 255, 255));
+        Btn_ver_plantas.setText("Ver plantas");
+        Btn_ver_plantas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_ver_plantasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -143,19 +163,25 @@ public class MenuFuncionario extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(66, 66, 66)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Btn_cerrar, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                            .addComponent(Btn_ver_users, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                            .addComponent(Btn_edit_perfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Btn_Registro_usuario_n, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Btn_eliminar_user, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(Btn_ver_users, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                                .addComponent(Btn_edit_perfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Btn_Registro_usuario_n, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Btn_eliminar_user, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(Btn_ver_lotes, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(31, 31, 31)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(Btn_ordenar_inspeccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Btn_ver_predios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Btn_ver_lugares, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jButton11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(163, 163, 163)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(Btn_cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Btn_ver_plantas, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(86, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -182,8 +208,12 @@ public class MenuFuncionario extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton11)
-                    .addComponent(Btn_cerrar))
-                .addContainerGap(49, Short.MAX_VALUE))
+                    .addComponent(Btn_ver_lotes))
+                .addGap(18, 18, 18)
+                .addComponent(Btn_ver_plantas)
+                .addGap(18, 18, 18)
+                .addComponent(Btn_cerrar)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -263,6 +293,21 @@ public class MenuFuncionario extends javax.swing.JFrame {
         pVerL.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_ver_lugaresActionPerformed
 
+    private void Btn_ver_lotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ver_lotesActionPerformed
+        this.dispose();
+        Ver_lotes_funcionario VerLotes = new Ver_lotes_funcionario(documentoFuncionario);
+        VerLotes.setVisible(true);
+        VerLotes.setLocationRelativeTo(null);
+    }//GEN-LAST:event_Btn_ver_lotesActionPerformed
+
+    private void Btn_ver_plantasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ver_plantasActionPerformed
+        String tipo_user = "Funcionario ICA";
+        this.dispose();
+        Ver_plantas pVerP = new Ver_plantas(documentoFuncionario, tipo_user);
+        pVerP.setVisible(true);
+        pVerP.setLocationRelativeTo(null);
+    }//GEN-LAST:event_Btn_ver_plantasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -304,7 +349,9 @@ public class MenuFuncionario extends javax.swing.JFrame {
     private javax.swing.JButton Btn_edit_perfil;
     private javax.swing.JButton Btn_eliminar_user;
     private javax.swing.JButton Btn_ordenar_inspeccion;
+    private javax.swing.JButton Btn_ver_lotes;
     private javax.swing.JButton Btn_ver_lugares;
+    private javax.swing.JButton Btn_ver_plantas;
     private javax.swing.JButton Btn_ver_predios;
     private javax.swing.JButton Btn_ver_users;
     private javax.swing.JButton jButton10;
