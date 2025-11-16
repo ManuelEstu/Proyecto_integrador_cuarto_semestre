@@ -36,7 +36,7 @@ public class DaoLugarProduccion2 {
         // Si se proporciona un documento, se añade la cláusula WHERE
         boolean buscarPorNombre = (nombre != null && !nombre.trim().isEmpty());
         if (buscarPorNombre) {
-            sql += " AND NUMERO_REGISTRO_ICA = ?";
+            sql += " AND NOMBRE = ?";
         }
 
         try {

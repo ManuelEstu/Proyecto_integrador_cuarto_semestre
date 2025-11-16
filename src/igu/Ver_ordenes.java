@@ -35,7 +35,7 @@ public class Ver_ordenes extends javax.swing.JFrame {
     
     private void iniciarTabla() {
         // Por defecto, carga todos los Funcionarios ICA al iniciar
-        cargarOrdenes(this.documento, null);
+        cargarOrdenes(this.documento, "Tecnica");
     }
     
     private void cargarOrdenes(String doc, String tip) {

@@ -40,8 +40,8 @@ public class MenuFuncionario extends javax.swing.JFrame {
         Btn_ordenar_inspeccion = new javax.swing.JButton();
         Btn_ver_predios = new javax.swing.JButton();
         Btn_ver_lugares = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
+        Btn_informeFit = new javax.swing.JButton();
+        Btn_informeTec = new javax.swing.JButton();
         Btn_eliminar_user = new javax.swing.JButton();
         Btn_ver_lotes = new javax.swing.JButton();
         Btn_ver_plantas = new javax.swing.JButton();
@@ -117,13 +117,23 @@ public class MenuFuncionario extends javax.swing.JFrame {
             }
         });
 
-        jButton10.setBackground(new java.awt.Color(51, 153, 0));
-        jButton10.setForeground(new java.awt.Color(255, 255, 255));
-        jButton10.setText("Ver informe visita fitosanitaria");
+        Btn_informeFit.setBackground(new java.awt.Color(51, 153, 0));
+        Btn_informeFit.setForeground(new java.awt.Color(255, 255, 255));
+        Btn_informeFit.setText("Ver informe visita fitosanitaria");
+        Btn_informeFit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_informeFitActionPerformed(evt);
+            }
+        });
 
-        jButton11.setBackground(new java.awt.Color(51, 153, 0));
-        jButton11.setForeground(new java.awt.Color(255, 255, 255));
-        jButton11.setText("Ver informe visita técnica");
+        Btn_informeTec.setBackground(new java.awt.Color(51, 153, 0));
+        Btn_informeTec.setForeground(new java.awt.Color(255, 255, 255));
+        Btn_informeTec.setText("Ver informe visita técnica");
+        Btn_informeTec.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_informeTecActionPerformed(evt);
+            }
+        });
 
         Btn_eliminar_user.setBackground(new java.awt.Color(51, 153, 0));
         Btn_eliminar_user.setForeground(new java.awt.Color(255, 255, 255));
@@ -175,8 +185,8 @@ public class MenuFuncionario extends javax.swing.JFrame {
                             .addComponent(Btn_ordenar_inspeccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Btn_ver_predios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Btn_ver_lugares, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(Btn_informeFit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Btn_informeTec, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(163, 163, 163)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -203,11 +213,11 @@ public class MenuFuncionario extends javax.swing.JFrame {
                     .addComponent(Btn_eliminar_user))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton10)
+                    .addComponent(Btn_informeFit)
                     .addComponent(Btn_edit_perfil))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton11)
+                    .addComponent(Btn_informeTec)
                     .addComponent(Btn_ver_lotes))
                 .addGap(18, 18, 18)
                 .addComponent(Btn_ver_plantas)
@@ -308,6 +318,17 @@ public class MenuFuncionario extends javax.swing.JFrame {
         pVerP.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_ver_plantasActionPerformed
 
+    private void Btn_informeFitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_informeFitActionPerformed
+        
+    }//GEN-LAST:event_Btn_informeFitActionPerformed
+
+    private void Btn_informeTecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_informeTecActionPerformed
+        this.dispose();
+        BuscarInformeVisitaTec bInfoT = new BuscarInformeVisitaTec(documentoFuncionario);
+        bInfoT.setVisible(true);
+        bInfoT.setLocationRelativeTo(null);
+    }//GEN-LAST:event_Btn_informeTecActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -348,14 +369,14 @@ public class MenuFuncionario extends javax.swing.JFrame {
     private javax.swing.JButton Btn_cerrar;
     private javax.swing.JButton Btn_edit_perfil;
     private javax.swing.JButton Btn_eliminar_user;
+    private javax.swing.JButton Btn_informeFit;
+    private javax.swing.JButton Btn_informeTec;
     private javax.swing.JButton Btn_ordenar_inspeccion;
     private javax.swing.JButton Btn_ver_lotes;
     private javax.swing.JButton Btn_ver_lugares;
     private javax.swing.JButton Btn_ver_plantas;
     private javax.swing.JButton Btn_ver_predios;
     private javax.swing.JButton Btn_ver_users;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

@@ -212,9 +212,9 @@ public class VerLotes extends javax.swing.JFrame {
         // Cierra esta ventana
         this.dispose();
         // Abre la otra ventana
-        MenuProductor menuProduc = new MenuProductor(this.documento);
-        menuProduc.setVisible(true);
-        menuProduc.setLocationRelativeTo(null);
+        Administrar_lotes adminL = new Administrar_lotes(this.documento);
+        adminL.setVisible(true);
+        adminL.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_cancelarActionPerformed
 
     /**

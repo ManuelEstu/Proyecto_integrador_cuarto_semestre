@@ -176,9 +176,9 @@ public class Administrar_lotes extends javax.swing.JFrame {
         // Cierra esta ventana
         this.dispose();
         // Abre la otra ventana
-        Gestion_informes pGestionInf = new Gestion_informes();
-        pGestionInf.setVisible(true);
-        pGestionInf.setLocationRelativeTo(null);
+        BuscarInformePro pBusInPro = new BuscarInformePro(this.documento);
+        pBusInPro.setVisible(true);
+        pBusInPro.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_informe_producActionPerformed
 
     private void Btn_eliminar_loteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_eliminar_loteActionPerformed

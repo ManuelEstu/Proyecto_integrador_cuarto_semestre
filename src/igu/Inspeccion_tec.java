@@ -8,20 +8,57 @@ package igu;
  *
  * @author CASA
  */
+import javax.swing.JOptionPane; // Para mostrar mensajes
+import logica.ControladorInspeccionTecnica;
+
 public class Inspeccion_tec extends javax.swing.JFrame {
     private String documento;
     /**
      * Creates new form Inspeccion_tec
      */
+    // 1. Instanciar el Controlador
+    private final ControladorInspeccionTecnica controller; 
+
+    /**
+     * Creates new form Inspeccion_tec
+     */
     public Inspeccion_tec() {
         initComponents();
+        this.controller = new ControladorInspeccionTecnica(); // Inicializar
     }
     
     public Inspeccion_tec(String documento) {
         initComponents();
         this.documento = documento;
+        this.controller = new ControladorInspeccionTecnica(); // Inicializar
     }
-
+    
+    private String getCheckValue(javax.swing.JCheckBox checkBox) {
+        // Si está seleccionado (chuleado) -> "S" (Sí)
+        // Si no está seleccionado (vacío) -> "N" (No)
+        return checkBox.isSelected() ? "S" : "N";
+    }
+    
+    private void limpiarCampos() {
+        // Limpiar el campo de texto de la orden
+        Txt_orden.setText(""); 
+        
+        // Deseleccionar todos los CheckBox
+        a_acopio.setSelected(false);
+        a_residuos.setSelected(false);
+        a_insumos.setSelected(false);
+        a_mezclas.setSelected(false);
+        a_residuo_mezlas.setSelected(false);
+        a_sanitaria.setSelected(false);
+        a_herramientas.setSelected(false);
+        
+        // Limpiar el área de comentarios
+        Txt_comentarios.setText(""); 
+        
+        // Opcional: Poner el foco en el primer campo para empezar de nuevo
+        Txt_orden.requestFocus(); 
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,19 +71,19 @@ public class Inspeccion_tec extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
-        jCheckBox6 = new javax.swing.JCheckBox();
-        jCheckBox7 = new javax.swing.JCheckBox();
+        Txt_orden = new javax.swing.JTextField();
+        a_acopio = new javax.swing.JCheckBox();
+        a_residuos = new javax.swing.JCheckBox();
+        a_insumos = new javax.swing.JCheckBox();
+        a_mezclas = new javax.swing.JCheckBox();
+        a_residuo_mezlas = new javax.swing.JCheckBox();
+        a_sanitaria = new javax.swing.JCheckBox();
+        a_herramientas = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        Txt_comentarios = new javax.swing.JTextArea();
         Btn_cancelar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        Btn_registrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,25 +93,25 @@ public class Inspeccion_tec extends javax.swing.JFrame {
 
         jLabel2.setText("ID de la orden de la inspección:");
 
-        jCheckBox1.setText("Área de acopio");
+        a_acopio.setText("Área de acopio");
 
-        jCheckBox2.setText("Área de manejo de residuos vegetales");
+        a_residuos.setText("Área de manejo de residuos vegetales");
 
-        jCheckBox3.setText("Área de manejo de almacenamiento de insumos agrícolas");
+        a_insumos.setText("Área de manejo de almacenamiento de insumos agrícolas");
 
-        jCheckBox4.setText("Área de docificación y preparación de mezclas plaguicidas");
+        a_mezclas.setText("Área de docificación y preparación de mezclas plaguicidas");
 
-        jCheckBox5.setText("Área de residuo de mezclas y lavado de equipos");
+        a_residuo_mezlas.setText("Área de residuo de mezclas y lavado de equipos");
 
-        jCheckBox6.setText("Área sanitaria y de la lavamanos");
+        a_sanitaria.setText("Área sanitaria y de la lavamanos");
 
-        jCheckBox7.setText("Área de almacenamiento de herramientas");
+        a_herramientas.setText("Área de almacenamiento de herramientas");
 
         jLabel4.setText("Comentarios y observaciones:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        Txt_comentarios.setColumns(20);
+        Txt_comentarios.setRows(5);
+        jScrollPane1.setViewportView(Txt_comentarios);
 
         Btn_cancelar.setBackground(new java.awt.Color(51, 153, 0));
         Btn_cancelar.setForeground(new java.awt.Color(255, 255, 255));
@@ -85,9 +122,14 @@ public class Inspeccion_tec extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(51, 153, 0));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Registrar");
+        Btn_registrar.setBackground(new java.awt.Color(51, 153, 0));
+        Btn_registrar.setForeground(new java.awt.Color(255, 255, 255));
+        Btn_registrar.setText("Registrar");
+        Btn_registrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_registrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -105,22 +147,22 @@ public class Inspeccion_tec extends javax.swing.JFrame {
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jCheckBox1)
-                            .addComponent(jCheckBox2)
-                            .addComponent(jCheckBox3)
-                            .addComponent(jCheckBox5)
-                            .addComponent(jCheckBox6)
-                            .addComponent(jCheckBox7)
-                            .addComponent(jCheckBox4)
+                            .addComponent(a_acopio)
+                            .addComponent(a_residuos)
+                            .addComponent(a_insumos)
+                            .addComponent(a_residuo_mezlas)
+                            .addComponent(a_sanitaria)
+                            .addComponent(a_herramientas)
+                            .addComponent(a_mezclas)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(42, 42, 42)
                                 .addComponent(Btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(83, 83, 83)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(Btn_registrar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(77, 77, 77)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(Txt_orden, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -131,21 +173,21 @@ public class Inspeccion_tec extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Txt_orden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jCheckBox1)
+                .addComponent(a_acopio)
                 .addGap(18, 18, 18)
-                .addComponent(jCheckBox2)
+                .addComponent(a_residuos)
                 .addGap(18, 18, 18)
-                .addComponent(jCheckBox3)
+                .addComponent(a_insumos)
                 .addGap(18, 18, 18)
-                .addComponent(jCheckBox4)
+                .addComponent(a_mezclas)
                 .addGap(18, 18, 18)
-                .addComponent(jCheckBox5)
+                .addComponent(a_residuo_mezlas)
                 .addGap(18, 18, 18)
-                .addComponent(jCheckBox6)
+                .addComponent(a_sanitaria)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox7)
+                .addComponent(a_herramientas)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
@@ -153,7 +195,7 @@ public class Inspeccion_tec extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Btn_cancelar)
-                    .addComponent(jButton1))
+                    .addComponent(Btn_registrar))
                 .addGap(40, 40, 40))
         );
 
@@ -181,6 +223,63 @@ public class Inspeccion_tec extends javax.swing.JFrame {
         menuT.setVisible(true);
         menuT.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_cancelarActionPerformed
+
+    private void Btn_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_registrarActionPerformed
+        String idOrden = Txt_orden.getText().trim();
+        
+        // VALIDACIÓN: Verificar que el ID de la orden no esté vacío
+        if (idOrden.isEmpty()) {
+            JOptionPane.showMessageDialog(this, 
+                    "El ID de la orden de inspección no puede estar vacío.", 
+                    "Error de Validación", 
+                    JOptionPane.WARNING_MESSAGE);
+            Txt_orden.requestFocus(); // Poner el foco en el campo
+            return; // Detener el proceso
+        }
+
+        // 4. Transformar los JCheckBox a 'S' o 'N'
+        String areaAcopio = getCheckValue(a_acopio);
+        String areaResiduos = getCheckValue(a_residuos);
+        String areaInsumos = getCheckValue(a_insumos);
+        String areaMezclas = getCheckValue(a_mezclas);
+        String areaResiduoMezclas = getCheckValue(a_residuo_mezlas);
+        String areaSanitaria = getCheckValue(a_sanitaria);
+        String areaHerramientas = getCheckValue(a_herramientas);
+        
+        String comentarios = Txt_comentarios.getText();
+        
+        // 5. Llamar al Controlador para registrar la inspección
+        // (El controlador usa internamente el patrón Builder)
+        boolean exito = controller.registrarInspeccion(
+            idOrden, 
+            areaAcopio, 
+            areaResiduos, 
+            areaInsumos, 
+            areaMezclas, 
+            areaResiduoMezclas, 
+            areaSanitaria, 
+            areaHerramientas, 
+            comentarios
+        );
+        
+        // 6. Mostrar el resultado al usuario
+        if (exito) {
+            JOptionPane.showMessageDialog(this, 
+                    "Inspección registrada exitosamente para la orden: " + idOrden, 
+                    "Registro Exitoso", 
+                    JOptionPane.INFORMATION_MESSAGE);
+            
+           limpiarCampos();
+            
+        } else {
+            // Un error ya se imprime en la consola desde el DAO/Controller, 
+            // pero es bueno notificar al usuario.
+            JOptionPane.showMessageDialog(this, 
+                    "❌ ERROR al registrar la inspección. Consulte la consola.", 
+                    "Error de Base de Datos", 
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_Btn_registrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,20 +318,20 @@ public class Inspeccion_tec extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_cancelar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JCheckBox jCheckBox6;
-    private javax.swing.JCheckBox jCheckBox7;
+    private javax.swing.JButton Btn_registrar;
+    private javax.swing.JTextArea Txt_comentarios;
+    private javax.swing.JTextField Txt_orden;
+    private javax.swing.JCheckBox a_acopio;
+    private javax.swing.JCheckBox a_herramientas;
+    private javax.swing.JCheckBox a_insumos;
+    private javax.swing.JCheckBox a_mezclas;
+    private javax.swing.JCheckBox a_residuo_mezlas;
+    private javax.swing.JCheckBox a_residuos;
+    private javax.swing.JCheckBox a_sanitaria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
