@@ -42,6 +42,7 @@ public class MenuProductor extends javax.swing.JFrame {
         Btn_admin_lotes = new javax.swing.JButton();
         Btn_eliminar_lugar = new javax.swing.JButton();
         Btn_edit_lug = new javax.swing.JButton();
+        Btn_cerrar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -130,6 +131,15 @@ public class MenuProductor extends javax.swing.JFrame {
             }
         });
 
+        Btn_cerrar1.setBackground(new java.awt.Color(51, 153, 0));
+        Btn_cerrar1.setForeground(new java.awt.Color(255, 255, 255));
+        Btn_cerrar1.setText("Informe estado lugar");
+        Btn_cerrar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_cerrar1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -160,8 +170,10 @@ public class MenuProductor extends javax.swing.JFrame {
                                 .addComponent(Btn_ver_plantas, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(27, 27, 27))))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(140, 140, 140)
-                .addComponent(Btn_cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(135, 135, 135)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Btn_cerrar1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Btn_cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -186,8 +198,10 @@ public class MenuProductor extends javax.swing.JFrame {
                     .addComponent(Btn_edit_lug)
                     .addComponent(Btn_ver_plantas))
                 .addGap(18, 18, 18)
+                .addComponent(Btn_cerrar1)
+                .addGap(18, 18, 18)
                 .addComponent(Btn_cerrar)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -273,6 +287,13 @@ public class MenuProductor extends javax.swing.JFrame {
         VerOr.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void Btn_cerrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_cerrar1ActionPerformed
+        this.dispose();
+        BuscarInformeEstadoLug InfEst = new BuscarInformeEstadoLug(documentoProductor);
+        InfEst.setVisible(true);
+        InfEst.setLocationRelativeTo(null);
+    }//GEN-LAST:event_Btn_cerrar1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -311,6 +332,7 @@ public class MenuProductor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_admin_lotes;
     private javax.swing.JButton Btn_cerrar;
+    private javax.swing.JButton Btn_cerrar1;
     private javax.swing.JButton Btn_edit_lug;
     private javax.swing.JButton Btn_edit_perfil;
     private javax.swing.JButton Btn_eliminar_lugar;

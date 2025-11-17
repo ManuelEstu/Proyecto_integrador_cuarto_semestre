@@ -59,6 +59,7 @@
                                   <Component id="Btn_eliminar_user" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <Component id="Btn_ver_lotes" min="-2" pref="168" max="-2" attributes="0"/>
+                              <Component id="Btn_ver_plantas" alignment="0" min="-2" pref="168" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -67,14 +68,12 @@
                               <Component id="Btn_ver_lugares" alignment="0" max="32767" attributes="0"/>
                               <Component id="Btn_informeFit" alignment="0" max="32767" attributes="0"/>
                               <Component id="Btn_informeTec" alignment="1" max="32767" attributes="0"/>
+                              <Component id="Btn_informeTec1" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="163" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="Btn_cerrar" min="-2" pref="168" max="-2" attributes="0"/>
-                              <Component id="Btn_ver_plantas" min="-2" pref="168" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="Btn_cerrar" min="-2" pref="168" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="86" max="32767" attributes="0"/>
@@ -112,7 +111,10 @@
                       <Component id="Btn_ver_lotes" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="Btn_ver_plantas" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="Btn_ver_plantas" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Btn_informeTec1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="Btn_cerrar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="19" max="32767" attributes="0"/>
@@ -298,6 +300,20 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_ver_plantasActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="Btn_informeTec1">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="99" red="33" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Ver informe de plantas"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_informeTec1ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
