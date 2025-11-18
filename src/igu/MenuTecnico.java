@@ -170,7 +170,7 @@ public class MenuTecnico extends javax.swing.JFrame {
 
     private void Btn_visita_fitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_visita_fitActionPerformed
         this.dispose();
-        Inspeccion_fit pInspFit = new Inspeccion_fit();
+        Inspeccion_fit pInspFit = new Inspeccion_fit(documentoTecnico);
         pInspFit.setVisible(true);
         pInspFit.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_visita_fitActionPerformed

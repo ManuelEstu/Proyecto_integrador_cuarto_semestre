@@ -331,7 +331,10 @@ public class MenuFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_Btn_ver_plantasActionPerformed
 
     private void Btn_informeFitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_informeFitActionPerformed
-        
+        this.dispose();
+        BuscarInformeVisitaFit bInfoT = new BuscarInformeVisitaFit(documentoFuncionario);
+        bInfoT.setVisible(true);
+        bInfoT.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_informeFitActionPerformed
 
     private void Btn_informeTecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_informeTecActionPerformed

@@ -8,15 +8,39 @@ package igu;
  *
  * @author CASA
  */
-public class Inspeccion_fit extends javax.swing.JFrame {
+import java.util.Locale;
+import javax.swing.JOptionPane; // Para mostrar mensajes
+import logica.ControladorInspeccionFit;
 
+public class Inspeccion_fit extends javax.swing.JFrame {
+    private String documento;
+    private final ControladorInspeccionFit controller;
     /**
      * Creates new form Inspeccion_fit
      */
     public Inspeccion_fit() {
         initComponents();
+        this.controller = new ControladorInspeccionFit(); // Inicializar
     }
-
+    
+    public Inspeccion_fit(String documento) {
+        initComponents();
+        this.documento = documento;
+        this.controller = new ControladorInspeccionFit(); // Inicializar
+    }
+    
+    private void limpiarCampos() {
+        Txt_orden.setText("");
+        Txt_num_plantas.setText("");
+        Txt_num_plan_infes.setText("");
+        comentarios.setText("");
+        // Reiniciar el ComboBox al primer elemento
+        Estado_feno.setSelectedIndex(0);
+        
+        // Opcional: enfocar el primer campo para una nueva entrada
+        Txt_orden.requestFocus();
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,7 +53,7 @@ public class Inspeccion_fit extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         Btn_cancelar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        Btn_registrar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         Txt_orden = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -40,7 +64,7 @@ public class Inspeccion_fit extends javax.swing.JFrame {
         Txt_num_plan_infes = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        comentarios = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,9 +81,14 @@ public class Inspeccion_fit extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(51, 153, 0));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Guardar");
+        Btn_registrar.setBackground(new java.awt.Color(51, 153, 0));
+        Btn_registrar.setForeground(new java.awt.Color(255, 255, 255));
+        Btn_registrar.setText("Registrar");
+        Btn_registrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_registrarActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("ID de la orden de la inspección:");
 
@@ -78,9 +107,9 @@ public class Inspeccion_fit extends javax.swing.JFrame {
 
         jLabel6.setText("Comentarios:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        comentarios.setColumns(20);
+        comentarios.setRows(5);
+        jScrollPane1.setViewportView(comentarios);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -90,7 +119,7 @@ public class Inspeccion_fit extends javax.swing.JFrame {
                 .addGap(76, 76, 76)
                 .addComponent(Btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Btn_registrar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(74, 74, 74))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,10 +172,10 @@ public class Inspeccion_fit extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Btn_cancelar)
-                    .addComponent(jButton1))
+                    .addComponent(Btn_registrar))
                 .addGap(45, 45, 45))
         );
 
@@ -168,7 +197,7 @@ public class Inspeccion_fit extends javax.swing.JFrame {
         // Cierra esta ventana
         this.dispose();
         // Abre la otra ventana
-        MenuTecnico menuT = new MenuTecnico();
+        MenuTecnico menuT = new MenuTecnico(this.documento);
         menuT.setVisible(true);
         menuT.setLocationRelativeTo(null);
     }//GEN-LAST:event_Btn_cancelarActionPerformed
@@ -176,6 +205,79 @@ public class Inspeccion_fit extends javax.swing.JFrame {
     private void Estado_fenoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Estado_fenoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Estado_fenoActionPerformed
+
+    private void Btn_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_registrarActionPerformed
+        // 1. Obtener los datos de la interfaz de usuario
+        String ID_ORDEN = Txt_orden.getText().trim();
+        String NRO_PLANTAS_EVALUADAS = Txt_num_plantas.getText().trim();
+        
+        // Obtener el valor seleccionado del JComboBox
+        String ESTADO_FENOLOGICO = (String) Estado_feno.getSelectedItem(); 
+        
+        String CANTIDAD_PLANTAS_INFESTADAS = Txt_num_plan_infes.getText().trim();
+        String COMENTARIOS = comentarios.getText();
+        
+        String PORCENTAJE_DE_INFESTACION;
+
+        // Validación básica de campos requeridos (ID_ORDEN y num plantas)
+        if (ID_ORDEN.isEmpty() || NRO_PLANTAS_EVALUADAS.isEmpty() || CANTIDAD_PLANTAS_INFESTADAS.isEmpty()) {
+            JOptionPane.showMessageDialog(this, 
+                "Por favor, complete todos los campos obligatorios (ID Orden, Nro. Plantas Evaluadas, Cant. Plantas Infestadas).", 
+                "Campos Incompletos", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // 2. Calcular PORCENTAJE_DE_INFESTACION (Es una buena práctica hacerlo en la vista o antes del controlador)
+        try {
+            int nroEvaluadas = Integer.parseInt(NRO_PLANTAS_EVALUADAS);
+            int cantInfestadas = Integer.parseInt(CANTIDAD_PLANTAS_INFESTADAS);
+
+            if (nroEvaluadas < 0 || cantInfestadas < 0) {
+                 // Si alguno es negativo, el controlador lo atrapará, pero el cálculo base
+                 // aún necesita un valor. Usamos "INVALID" o lo calculamos si es posible.
+                 PORCENTAJE_DE_INFESTACION = "INVALID_NEGATIVE";
+            } else if (nroEvaluadas == 0) {
+                 PORCENTAJE_DE_INFESTACION = "0.00"; 
+            } else {
+                double porcentaje = ((double) cantInfestadas / nroEvaluadas) * 100;
+                
+                // 🔑 SOLUCIÓN: Usar Locale.US para que el String.format siempre use el PUNTO (.)
+                // El controlador podrá parsear este formato sin problemas.
+                PORCENTAJE_DE_INFESTACION = String.format(Locale.US, "%.2f", porcentaje);
+            }
+            
+        } catch (NumberFormatException e) {
+             // Si las cadenas de entrada no son números, le pasamos un valor que el controlador
+             // rechazará en la fase de validación.
+             PORCENTAJE_DE_INFESTACION = "INVALID_INPUT"; 
+        }
+
+        // 3. Llamar al controlador para registrar la inspección
+        boolean registroExitoso = controller.registrarInspeccion(
+            ID_ORDEN, 
+            NRO_PLANTAS_EVALUADAS, 
+            ESTADO_FENOLOGICO, 
+            CANTIDAD_PLANTAS_INFESTADAS, 
+            PORCENTAJE_DE_INFESTACION, // Pasamos el valor calculado/formateado o la cadena 'ERROR_CALCULO'
+            COMENTARIOS
+        );
+
+        // 4. Mostrar el resultado al usuario
+        if (registroExitoso) {
+            JOptionPane.showMessageDialog(this, 
+                "✅ ¡Registro de inspección completado con éxito! La orden " + ID_ORDEN + " ha sido actualizada.", 
+                "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
+            
+            limpiarCampos();
+            
+        } else {
+            // El controlador ya imprime un mensaje de error detallado en la consola (System.err).
+            // Aquí mostramos un mensaje genérico al usuario.
+            JOptionPane.showMessageDialog(this, 
+                "❌ Error al registrar la inspección. Verifique que los datos numéricos sean correctos (enteros/decimales, rangos) y que la Orden exista.", 
+                "Error de Registro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_Btn_registrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -214,11 +316,12 @@ public class Inspeccion_fit extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_cancelar;
+    private javax.swing.JButton Btn_registrar;
     private javax.swing.JComboBox<String> Estado_feno;
     private javax.swing.JTextField Txt_num_plan_infes;
     private javax.swing.JTextField Txt_num_plantas;
     private javax.swing.JTextField Txt_orden;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextArea comentarios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -227,6 +330,5 @@ public class Inspeccion_fit extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
