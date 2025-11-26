@@ -53,11 +53,11 @@ public class Ver_ordenes extends javax.swing.JFrame {
         
         // Ajustar el ancho de las columnas AHORA CON LAS 7 COLUMNAS NUEVAS
         if (Tab_ordenes.getColumnCount() > 0) {
-            Tab_ordenes.getColumnModel().getColumn(0).setPreferredWidth(80); // Documento
+            Tab_ordenes.getColumnModel().getColumn(0).setPreferredWidth(150); // Documento
             Tab_ordenes.getColumnModel().getColumn(1).setPreferredWidth(150);  // Nombre
-            Tab_ordenes.getColumnModel().getColumn(2).setPreferredWidth(100);  // Apellido
+            Tab_ordenes.getColumnModel().getColumn(2).setPreferredWidth(150);  // Apellido
             Tab_ordenes.getColumnModel().getColumn(3).setPreferredWidth(150); // Nombre de Usuario (Nuevo)
-            Tab_ordenes.getColumnModel().getColumn(4).setPreferredWidth(200);  // Clave (Nueva)
+            Tab_ordenes.getColumnModel().getColumn(4).setPreferredWidth(150);  // Clave (Nueva)
         }
     }
     

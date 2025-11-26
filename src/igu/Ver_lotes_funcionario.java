@@ -53,19 +53,19 @@ public class Ver_lotes_funcionario extends javax.swing.JFrame {
         
         // Ajustar el ancho de las columnas AHORA CON LAS 7 COLUMNAS NUEVAS
         if (Tab_lotes.getColumnCount() > 0) {
-            Tab_lotes.getColumnModel().getColumn(0).setPreferredWidth(100); // Documento
-            Tab_lotes.getColumnModel().getColumn(1).setPreferredWidth(50);  // Nombre
-            Tab_lotes.getColumnModel().getColumn(2).setPreferredWidth(80);  // Apellido
+            Tab_lotes.getColumnModel().getColumn(0).setPreferredWidth(150); // Documento
+            Tab_lotes.getColumnModel().getColumn(1).setPreferredWidth(150);  // Nombre
+            Tab_lotes.getColumnModel().getColumn(2).setPreferredWidth(150);  // Apellido
             Tab_lotes.getColumnModel().getColumn(3).setPreferredWidth(150); // Nombre de Usuario (Nuevo)
-            Tab_lotes.getColumnModel().getColumn(4).setPreferredWidth(50);  // Clave (Nueva)
+            Tab_lotes.getColumnModel().getColumn(4).setPreferredWidth(150);  // Clave (Nueva)
             Tab_lotes.getColumnModel().getColumn(5).setPreferredWidth(150); // Email
             Tab_lotes.getColumnModel().getColumn(6).setPreferredWidth(150); // Info Adicional
-            Tab_lotes.getColumnModel().getColumn(7).setPreferredWidth(100);
-            Tab_lotes.getColumnModel().getColumn(8).setPreferredWidth(80);
+            Tab_lotes.getColumnModel().getColumn(7).setPreferredWidth(150);
+            Tab_lotes.getColumnModel().getColumn(8).setPreferredWidth(150);
             Tab_lotes.getColumnModel().getColumn(9).setPreferredWidth(150);
-            Tab_lotes.getColumnModel().getColumn(10).setPreferredWidth(80);
+            Tab_lotes.getColumnModel().getColumn(10).setPreferredWidth(150);
             Tab_lotes.getColumnModel().getColumn(11).setPreferredWidth(150);
-            Tab_lotes.getColumnModel().getColumn(12).setPreferredWidth(80);
+            Tab_lotes.getColumnModel().getColumn(12).setPreferredWidth(150);
         }
     }
     

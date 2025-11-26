@@ -33,7 +33,7 @@ public class ControladorVerPredios {
     
     public DefaultTableModel cargarTablaPredios(List<DatosPredio2> listaPredios) {
         // Nuevas columnas: Se elimina "Tipo" y se añaden "Usuario" y "Clave"
-        String[] titulos = {"NUMERO_REGISTRO_ICA", "NUMERO_PREDIAL", "NOMBRE", "DEPARTAMENTO", "MUNICIPIO", "VEREDA", "NUMERO_ICA_LUGAR_PRODUCCION", "EXTENSION"};
+        String[] titulos = {"REGISTRO ICA", "PREDIAL", "NOMBRE", "DEPARTAMENTO", "MUNICIPIO", "VEREDA", "LUGAR PRODUCCION", "EXTENSION"};
         DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
              // Esto hace que las celdas no sean editables
             @Override

@@ -27,7 +27,7 @@ public class ControladorVerPlantas {
     
     public DefaultTableModel cargarTablaPlantas(List<DatosPlanta> listaPlantas) {
         // Nuevas columnas: Se elimina "Tipo" y se añaden "Usuario" y "Clave"
-        String[] titulos = {"ID_PLANTA", "NOMBRE_COMUN", "NOMBRE_CIENTIFICO", "CICLO_DE_CULTIVO", "NOMBRE_DE_VARIEDAD", "DESCRIPCION"};
+        String[] titulos = {"ID", "NOMBRE COMUN", "NOMBRE CIENTIFICO", "CICLO CULTIVO", "NOMBRE VARIEDAD", "DESCRIPCION"};
         DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
              // Esto hace que las celdas no sean editables
             @Override

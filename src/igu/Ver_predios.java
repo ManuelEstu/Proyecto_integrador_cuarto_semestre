@@ -60,7 +60,7 @@ public class Ver_predios extends javax.swing.JFrame {
             Tab_predios.getColumnModel().getColumn(4).setPreferredWidth(150);  // Clave (Nueva)
             Tab_predios.getColumnModel().getColumn(5).setPreferredWidth(150); // Email
             Tab_predios.getColumnModel().getColumn(6).setPreferredWidth(150);
-            Tab_predios.getColumnModel().getColumn(6).setPreferredWidth(100);
+            Tab_predios.getColumnModel().getColumn(6).setPreferredWidth(150);
         }
     }
 

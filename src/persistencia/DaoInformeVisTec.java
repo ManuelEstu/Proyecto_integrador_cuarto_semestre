@@ -22,33 +22,37 @@ public class DaoInformeVisTec {
     // La sentencia SQL final que definimos.
     private static final String SQL_ULTIMO_INFORME = 
         "SELECT " +
-        "    ldp.nombre, " +
-        "    t.nombre AS nombre_tecnico, " +
-        "    t.apellido AS apellido_tecnico, " +
-        "    oi.fecha_estimada AS fecha_ultima_inspeccion, " +
-        "    it.AREA_ACOPIO, " +
-        "    it.AREA_MAN_RESIDUOS_VEGETALES, " +
-        "    it.AREA_ALMAC_INSUMOS_AGRICOLAS, " +
-        "    it.AREA_DOSIF_PREP_MEZCLAS, " +
-        "    it.AREA_RESIDUOS_MEZ_LAVADO, " +
-        "    it.AREA_SANITARIA_LAVAMANOS, " +
-        "    it.AREA_HERRAMIENTAS, " +
-        "    it.COMENTARIOS " +
-        "FROM " +
-        "    LUGAR_PRODUCCION ldp " +
-        "INNER JOIN " +
-        "    ORDEN_INSPECCION oi ON ldp.numero_registro_ica = oi.NUMERO_ICA_LUGAR_PRODUCCION " +
-        "INNER JOIN " +
-        "    TECNICO t ON oi.NUMERO_DOCUMENTO_TECNICO = t.documento " +
-        "INNER JOIN " +
-        "    INSPECCION_TECNICA it ON oi.id = it.id_orden " +
-        "WHERE " +
-        "    ldp.numero_registro_ica = ? " +
-        "    AND oi.fecha_estimada = ( " +
-        "        SELECT MAX(fecha_estimada) " +
-        "        FROM ORDEN_INSPECCION " +
-        "        WHERE NUMERO_ICA_LUGAR_PRODUCCION = ? " +
-        "    )";
+    "    ldp.nombre, " +
+    "    t.nombre AS nombre_tecnico, " +
+    "    t.apellido AS apellido_tecnico, " +
+    "    oi.fecha_estimada AS fecha_ultima_inspeccion, " +
+    "    it.AREA_ACOPIO, " +
+    "    it.AREA_MAN_RESIDUOS_VEGETALES, " +
+    "    it.AREA_ALMAC_INSUMOS_AGRICOLAS, " +
+    "    it.AREA_DOSIF_PREP_MEZCLAS, " +
+    "    it.AREA_RESIDUOS_MEZ_LAVADO, " +
+    "    it.AREA_SANITARIA_LAVAMANOS, " +
+    "    it.AREA_HERRAMIENTAS, " +
+    "    it.COMENTARIOS " +
+    "FROM " +
+    "    LUGAR_PRODUCCION ldp " +
+    "INNER JOIN " +
+    "    ORDEN_INSPECCION oi ON ldp.numero_registro_ica = oi.NUMERO_ICA_LUGAR_PRODUCCION " +
+    "INNER JOIN " +
+    "    TECNICO t ON oi.NUMERO_DOCUMENTO_TECNICO = t.documento " +
+    "INNER JOIN " +
+    "    INSPECCION_TECNICA it ON oi.id = it.id_orden " +
+    "WHERE " +
+    "    ldp.numero_registro_ica = ? " +
+    "    AND oi.tipo = 'Tecnica' " +         // <-- FILTRO CLAVE 1: Solo inspecciones Técnicas
+    "    AND oi.estado = 'REALIZADA' " +     // <-- FILTRO CLAVE 2: Solo inspecciones ya realizadas
+    "    AND oi.fecha_estimada = ( " +
+    "        SELECT MAX(fecha_estimada) " +
+    "        FROM ORDEN_INSPECCION " +
+    "        WHERE NUMERO_ICA_LUGAR_PRODUCCION = ? " +
+    "        AND tipo = 'Tecnica' " +         // <-- FILTRO CLAVE 3 (en subconsulta): Solo Técnicas
+    "        AND estado = 'REALIZADA' " +     // <-- FILTRO CLAVE 4 (en subconsulta): Solo Realizadas
+    "    )";
 
 
     /**

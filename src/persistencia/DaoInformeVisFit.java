@@ -19,30 +19,34 @@ import logica.InformeVisFit;
 public class DaoInformeVisFit {
     private static final String SQL_ULTIMO_INFORME = 
         "SELECT " +
-        "    ldp.nombre, " +
-        "    t.nombre AS nombre_tecnico, " +
-        "    t.apellido AS apellido_tecnico, " +
-        "    oi.fecha_estimada AS fecha_ultima_inspeccion, " +
-        "    inf.NRO_PLANTAS_EVALUADAS, " +
-        "    inf.ESTADO_FENOLOGICO, " +
-        "    inf.CANTIDAD_PLANTAS_INFESTADAS, " +
-        "    inf.PORCENTAJE_DE_INFESTACION, " +
-        "    inf.COMENTARIOS " +
-        "FROM " +
-        "    LUGAR_PRODUCCION ldp " +
-        "INNER JOIN " +
-        "    ORDEN_INSPECCION oi ON ldp.numero_registro_ica = oi.NUMERO_ICA_LUGAR_PRODUCCION " +
-        "INNER JOIN " +
-        "    TECNICO t ON oi.NUMERO_DOCUMENTO_TECNICO = t.documento " +
-        "INNER JOIN " +
-        "    inspeccion_fitosanitaria inf ON oi.id = inf.ID_ORDEN " +
-        "WHERE " +
-        "    ldp.numero_registro_ica = ? " +
-        "    AND oi.fecha_estimada = ( " +
-        "        SELECT MAX(fecha_estimada) " +
-        "        FROM ORDEN_INSPECCION " +
-        "        WHERE NUMERO_ICA_LUGAR_PRODUCCION = ? " +
-        "    )";
+    "    ldp.nombre, " +
+    "    t.nombre AS nombre_tecnico, " +
+    "    t.apellido AS apellido_tecnico, " +
+    "    oi.fecha_estimada AS fecha_ultima_inspeccion, " +
+    "    inf.NRO_PLANTAS_EVALUADAS, " +
+    "    inf.ESTADO_FENOLOGICO, " +
+    "    inf.CANTIDAD_PLANTAS_INFESTADAS, " +
+    "    inf.PORCENTAJE_DE_INFESTACION, " +
+    "    inf.COMENTARIOS " +
+    "FROM " +
+    "    LUGAR_PRODUCCION ldp " +
+    "INNER JOIN " +
+    "    ORDEN_INSPECCION oi ON ldp.numero_registro_ica = oi.NUMERO_ICA_LUGAR_PRODUCCION " +
+    "INNER JOIN " +
+    "    TECNICO t ON oi.NUMERO_DOCUMENTO_TECNICO = t.documento " +
+    "INNER JOIN " +
+    "    inspeccion_fitosanitaria inf ON oi.id = inf.ID_ORDEN " +
+    "WHERE " +
+    "    ldp.numero_registro_ica = ? " +
+    "    AND oi.tipo = 'Fitosanitaria' " +     // <-- FILTRO CLAVE 1: Solo órdenes Fitosanitarias
+    "    AND oi.estado = 'REALIZADA' " +         // <-- FILTRO CLAVE 2: Solo órdenes ya realizadas
+    "    AND oi.fecha_estimada = ( " +
+    "        SELECT MAX(fecha_estimada) " +
+    "        FROM ORDEN_INSPECCION " +
+    "        WHERE NUMERO_ICA_LUGAR_PRODUCCION = ? " +
+    "        AND tipo = 'Fitosanitaria' " +     // <-- FILTRO CLAVE 3 (en subconsulta)
+    "        AND estado = 'REALIZADA' " +         // <-- FILTRO CLAVE 4 (en subconsulta)
+    "    )";
 
 
     /**

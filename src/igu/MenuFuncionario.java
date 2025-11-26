@@ -147,7 +147,7 @@ public class MenuFuncionario extends javax.swing.JFrame {
 
         Btn_ver_lotes.setBackground(new java.awt.Color(51, 153, 0));
         Btn_ver_lotes.setForeground(new java.awt.Color(255, 255, 255));
-        Btn_ver_lotes.setText("Ver lotes");
+        Btn_ver_lotes.setText("Ver los lotes");
         Btn_ver_lotes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_ver_lotesActionPerformed(evt);
@@ -156,7 +156,7 @@ public class MenuFuncionario extends javax.swing.JFrame {
 
         Btn_ver_plantas.setBackground(new java.awt.Color(51, 153, 0));
         Btn_ver_plantas.setForeground(new java.awt.Color(255, 255, 255));
-        Btn_ver_plantas.setText("Ver plantas");
+        Btn_ver_plantas.setText("Ver las plantas");
         Btn_ver_plantas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_ver_plantasActionPerformed(evt);

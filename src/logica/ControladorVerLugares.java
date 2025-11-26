@@ -33,7 +33,7 @@ public class ControladorVerLugares {
     
     public DefaultTableModel cargarTablaLugares(List<DatosLugar2> listaLugares) {
         // Nuevas columnas: Se elimina "Tipo" y se añaden "Usuario" y "Clave"
-        String[] titulos = {"NUMERO_REGISTRO_ICA", "NUMERO_PREDIAL", "NOMBRE", "NOMBRE EMPRESA", "TELEFONO EMPRESA", "DEPARTAMENTO", "MUNICIPIO", "VEREDA"};
+        String[] titulos = {"REGISTRO ICA", "PREDIAL", "NOMBRE", "EMPRESA", "TELEFONO EMPRESA", "DEPARTAMENTO", "MUNICIPIO", "VEREDA"};
         DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
              // Esto hace que las celdas no sean editables
             @Override
